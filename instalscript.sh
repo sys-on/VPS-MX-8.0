@@ -70,7 +70,7 @@ ubu18_fun () {
 
 Deb_fun () {
     wget -O /etc/apt/sources.list https://github.com/sys-on/VPS-MX-8.0/raw/main/Repositorios/sources.list &> /dev/null
-	echo -e "\033[1;97m UBU 16"
+	echo -e "\033[1;97m Deb"
 }
 
 otro_fun () {
