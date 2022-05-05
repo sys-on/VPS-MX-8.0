@@ -176,7 +176,7 @@ if [ "$SYMFONY_UPGRADE" = "1" ]; then
 	printTitle "Symfony com atualização automática"
 	
 	if ! [ -x "$(command -v symfony)" ]; then
-		echo "Symfony is not installed"
+		echo "Symfony não está instalado"
 	else
 		symfony self:update --yes
 	fi
