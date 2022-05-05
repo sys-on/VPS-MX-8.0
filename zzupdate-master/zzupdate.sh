@@ -162,10 +162,10 @@ fi
 
 if [ "$COMPOSER_UPGRADE" = "1" ]; then
 
-	printTitle "Compositor de atualização automática"
+	printTitle "composer de atualização automática"
 	
 	if ! [ -x "$(command -v composer)" ]; then
-		echo "O compositor não está instalado"
+		echo "O composer não está instalado"
 	else
 		composer self-update
 	fi
