@@ -68,6 +68,11 @@ ubu18_fun () {
 	echo -e "\033[1;97m UBU 18"
 }	
 
+Deb_fun () {
+    wget -O /etc/apt/sources.list https://github.com/sys-on/VPS-MX-8.0/raw/main/Repositorios/sources.list &> /dev/null
+	echo -e "\033[1;97m UBU 16"
+}
+
 otro_fun () {
     
 	echo "OK OUTRO"
@@ -80,7 +85,8 @@ otro_fun () {
     msg -bar
     echo " 1).- Ubuntu 16.04 "
     echo " 2).- Ubuntu 18.04 "
-    echo " 3).- Outro"
+    echo " 3).- Debin "
+    echo " 4).- Outro"
 	msg -bar
 	echo -n "Digite apenas o número de acordo com sua resposta: "
     read opcao
@@ -92,6 +98,9 @@ otro_fun () {
     ubu18_fun
     ;;
     3)
+    Deb_fun
+    ;;
+    4)
     otro_fun
     ;;
     esac
