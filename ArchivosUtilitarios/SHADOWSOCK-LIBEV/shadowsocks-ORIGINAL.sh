@@ -404,7 +404,7 @@ error_detect_depends(){
     ${command} > /dev/null 2>&1
     if [ $? -ne 0 ]; then
         echo -e "[${red}Error${plain}] Falha na instalação ${red}${depend}${plain}"
-        echo "Por favor visite: https://teddysun.com/486.html e contate."
+        echo "Por favor visite: https://teddysun.com/486.html e contato."
         exit 1
     fi
 }
@@ -805,11 +805,11 @@ install_prepare_libev_obfs(){
             [ -z "$r_libev_obfs" ] && r_libev_obfs=1
             expr ${r_libev_obfs} + 1 &>/dev/null
             if [ $? -ne 0 ]; then
-                echo -e "[${red}Error${plain}] Please enter a number"
+                echo -e "[${red}Error${plain}] Por favor, coloque um numero"
                 continue
             fi
             if [[ "$r_libev_obfs" -lt 1 || "$r_libev_obfs" -gt ${#obfs_libev[@]} ]]; then
-                echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#obfs_libev[@]}"
+                echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#obfs_libev[@]}"
                 continue
             fi
             shadowsocklibev_obfs=${obfs_libev[$r_libev_obfs-1]}
@@ -820,7 +820,7 @@ install_prepare_libev_obfs(){
             done
         fi
     else
-        echo -e "[${green}Info${plain}] autoconf version is less than 2.67, simple-obfs for ${software[${selected}-1]} installation has been skipped"
+        echo -e "[${green}Info${plain}] versão do autoconf é menor que 2.67, simple-obfs para ${software[${selected}-1]} a instalação foi ignorada"
     fi
 }
 
@@ -841,7 +841,7 @@ install_prepare(){
         install_prepare_obfs
     fi
 
-    echo "Presiona cualquier tecla para comenzar...o Presione Ctrl+C para cancelar"
+    echo "Pressione qualquer tecla para iniciar... ou pressione Ctrl+C para cancelar"
     char=`get_char`
 
 }
@@ -904,8 +904,8 @@ install_shadowsocks_python(){
         fi
     else
         echo
-        echo -e "[${red}Error${plain}] ${software[0]} install failed."
-        echo "Please visit: https://teddysun.com/486.html and contact."
+        echo -e "[${red}Error${plain}] ${software[0]} instalação falhou."
+        echo "Visite: https://teddysun.com/486.html e entre em contato."
         install_cleanup
         exit 1
     fi
