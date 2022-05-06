@@ -123,17 +123,17 @@ echo "$IP" > /usr/bin/vendor_code
 }
 
 function_verify () {
-  permited=$(curl -sSL "https://raw.githubusercontent.com/NDsVPN/Control/main/Control-IP")
+  permited=$(curl -sSL "https://raw.githubusercontent.com/sys-on/Control/main/Control-IP")
   [[ $(echo $permited|grep "${IP}") = "" ]] && {
   echo -e "\n\n\n\033[1;31m====================================================="
-  echo -e "\033[1;31m       ¡LA IP $(wget -qO- ipv4.icanhazip.com) NO ESTA AUTORIZADA!"
-  echo -e "\033[1;31m                CONTACTE A @NDs"
+  echo -e "\033[1;31m       ¡O IP $(wget -qO- ipv4.icanhazip.com) NÃO É AUTORIZADO!"
+  echo -e "\033[1;31m                CONTATO @Sys-on"
   echo -e "\033[1;31m=====================================================\n\n\n"
   [[ -d /etc/SCRIPT ]] && rm -rf /etc/SCRIPT
   exit 1
   } || {
   ### INTALAR VERCION DE SCRIPT
-  v1=$(curl -sSL "https://raw.githubusercontent.com/NDsVPN/Generador_Gen_VPS-MX/main/Vercion")
+  v1=$(curl -sSL "https://raw.githubusercontent.com/sys-on/Generador_Gen_VPS-MX/main/Vercion")
   echo "$v1" > /etc/versin_script
   }
 }
@@ -143,7 +143,7 @@ meu_ip
 function_verify
 
 echo -e "$BARRA"
-echo -e "\033[1;33mDescargando archivos... "
+echo -e "\033[1;33mBaixando arquivos... "
 echo -e "$BARRA"
 cd $HOME
 REQUEST=$(echo $SCPresq|$SUB_DOM)
@@ -151,13 +151,13 @@ wget -O "$HOME/lista-arq" ${REQUEST}/GERADOR > /dev/null 2>&1
 sleep 1s
 [[ -e $HOME/lista-arq ]] && {
 for arqx in `cat $HOME/lista-arq`; do
-echo -ne "\033[1;33mDescargando: \033[1;31m[$arqx] "
+echo -ne "\033[1;33mBaixando: \033[1;31m[$arqx] "
 wget -O $HOME/$arqx ${REQUEST}/${arqx} > /dev/null 2>&1 && {
 echo -e "\033[1;31m- \033[1;32mRecibido!"
 [[ -e $HOME/$arqx ]] && veryfy_fun $arqx
-} || echo -e "\033[1;31m- \033[1;31mFalla (no recibido!)"
+} || echo -e "\033[1;31m- \033[1;31mFalha (não recibido!)"
 done
-[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/NDsVPN/Generador_Gen_VPS-MX/main/Install/trans &> /dev/null
+[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/sys-on/Generador_Gen_VPS-MX/main/Install/trans &> /dev/null
 [[ -e /bin/http-server.py ]] && mv -f /bin/http-server.py /bin/http-server.sh && chmod +x /bin/http-server.sh
 IVAR2="/etc/key-gerador"
 echo "$Key" > $IVAR
@@ -165,7 +165,7 @@ echo "$Key" > $IVAR
 cp /bin/http-server.sh /etc/SCRIPT
 mv /etc/SCRIPT/http-server.sh /etc/SCRIPT/http-server.py
 chmod +x /etc/SCRIPT/http-server.py
-wget https://raw.githubusercontent.com/NDsVPN/Generador_Gen_VPS-MX/main/gerador/gerar.sh &>/dev/null
+wget https://raw.githubusercontent.com/sys-on/Generador_Gen_VPS-MX/main/gerador/gerar.sh &>/dev/null
 mv gerar.sh /etc/SCRIPT
 chmod +x /etc/SCRIPT/gerar.sh
 cd /etc/SCRIPT/
@@ -174,12 +174,12 @@ rm $HOME/lista-arq
 sed -i -e 's/\r$//' /usr/bin/gerar.sh
 echo -e "$BARRA"
 echo "/usr/bin/gerar.sh" > /usr/bin/gerar && chmod +x /usr/bin/gerar
-echo -e "\033[1;33m Perfecto, utilize el comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar sus keys y
+echo -e "\033[1;33m Perfeito, use o comando \033[1;31mgerar.sh o gerar \033[1;33mpara administrar suas chaves y
  actualizar la base del servidor"
 echo -e "$BARRA"
 } || {
 echo -e "$BARRA"
-echo -e "\033[1;33mKey Invalida!"
+echo -e "\033[1;33mChave inválida!"
 echo -e "$BARRA"
 }
 echo -ne "\033[0m"
