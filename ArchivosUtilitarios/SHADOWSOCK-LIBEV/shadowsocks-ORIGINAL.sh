@@ -335,7 +335,7 @@ download(){
     if [ -f ${1} ]; then
         echo "${filename} [found]"
     else
-        echo "${filename} not found, download now..."
+        echo "${filename} Não encontrado, baixe agora..."
         wget --no-check-certificate -c -t3 -T60 -O ${1} ${2}
         if [ $? -ne 0 ]; then
             echo -e "[${red}Error${plain}] Download ${filename} failed."
@@ -400,11 +400,11 @@ get_char(){
 error_detect_depends(){
     local command=$1
     local depend=`echo "${command}" | awk '{print $4}'`
-    echo -e "[${green}Info${plain}] Starting to install package ${depend}"
+    echo -e "[${green}Info${plain}] Iniciando a instalação do pacote ${depend}"
     ${command} > /dev/null 2>&1
     if [ $? -ne 0 ]; then
-        echo -e "[${red}Error${plain}] Failed to install ${red}${depend}${plain}"
-        echo "Please visit: https://teddysun.com/486.html and contact."
+        echo -e "[${red}Error${plain}] Falha na instalação ${red}${depend}${plain}"
+        echo "Por favor visite: https://teddysun.com/486.html e contate."
         exit 1
     fi
 }
@@ -420,10 +420,10 @@ config_firewall(){
                 /etc/init.d/iptables save
                 /etc/init.d/iptables restart
             else
-                echo -e "[${green}Info${plain}] port ${green}${shadowsocksport}${plain} already be enabled."
+                echo -e "[${green}Aviso${plain}] Porta ${green}${shadowsocksport}${plain} Já está habilitado."
             fi
         else
-            echo -e "[${yellow}Warning${plain}] iptables looks like not running or not installed, please enable port ${shadowsocksport} manually if necessary."
+            echo -e "[${yellow}Aviso${plain}] Iptables parece não estar rodando ou não instalado, por favor habilite a Porta ${shadowsocksport} manualmente se necessário."
         fi
     elif centosversion 7; then
         systemctl status firewalld > /dev/null 2>&1
@@ -433,7 +433,7 @@ config_firewall(){
             firewall-cmd --permanent --zone=${default_zone} --add-port=${shadowsocksport}/udp
             firewall-cmd --reload
         else
-            echo -e "[${yellow}Warning${plain}] firewalld looks like not running or not installed, please enable port ${shadowsocksport} manually if necessary."
+            echo -e "[${yellow}Aviso${plain}] Firewalld parece não estar rodando ou não instalado, por favor habilite a Porta ${shadowsocksport} manualmente se necessário."
         fi
     fi
 }
@@ -547,14 +547,14 @@ fi
 
 install_dependencies(){
     if check_sys packageManager yum; then
-        echo -e "[${green}Info${plain}] Checking the EPEL repository..."
+        echo -e "[${green}Info${plain}] Verificando o repositório EPEL..."
         if [ ! -f /etc/yum.repos.d/epel.repo ]; then
             yum install -y epel-release > /dev/null 2>&1
         fi
-        [ ! -f /etc/yum.repos.d/epel.repo ] && echo -e "[${red}Error${plain}] Install EPEL repository failed, please check it." && exit 1
+        [ ! -f /etc/yum.repos.d/epel.repo ] && echo -e "[${red}Error${plain}] Falha na instalação do repositório EPEL, verifique-o." && exit 1
         [ ! "$(command -v yum-config-manager)" ] && yum install -y yum-utils > /dev/null 2>&1
         [ x"$(yum-config-manager epel | grep -w enabled | awk '{print $3}')" != x"True" ] && yum-config-manager --enable epel > /dev/null 2>&1
-        echo -e "[${green}Info${plain}] Checking the EPEL repository complete..."
+        echo -e "[${green}Info${plain}] Verificando o repositório EPEL completo..."
 
         yum_depends=(
             unzip gzip openssl openssl-devel gcc python python-devel python-setuptools pcre pcre-devel libtool libevent
@@ -590,8 +590,8 @@ install_check(){
 
 install_select(){
     if ! install_check; then
-        echo -e "[${red}Error${plain}] Your OS is not supported to run it!"
-        echo "Please change to CentOS 6+/Debian 7+/Ubuntu 12+ and try again."
+        echo -e "[${red}Error${plain}] Seu sistem não é compatível para executá-lo!"
+        echo "Por favor, mude para CentOS 6+/Debian 7+/Ubuntu 12+ e tente novamente."
         exit 1
     fi
 
@@ -599,35 +599,35 @@ install_select(){
     while true
     do
 	msg -bar
-    echo  "Selecione el tipo de Shadowsock:"
+    echo  "Selecione o tipo de Shadowsock:"
 	msg -bar
     for ((i=1;i<=${#software[@]};i++ )); do
         hint="${software[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
 	msg -bar
-    read -p "Por favor, introduzca un número (Default ${software[0]}):" selected
+    read -p "Por favor, coloque um numero (padrão ${software[0]}):" selected
     [ -z "${selected}" ] && selected="4"
     case "${selected}" in
         1|2|4)
         msg -bar
-        echo "Tu eliges = ${software[${selected}-1]}"
+        echo "Você escolhe = ${software[${selected}-1]}"
         msg -bar
         break
         ;;
         *)
-        echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
+        echo -e "[${red}Error${plain}] Insira apenas um número [1-4]"
         ;;
     esac
     done
 }
 
 install_prepare_password(){
-    echo "Por favor, introduzca la contraseña para ${software[${selected}-1]}"
-    read -p "(Default Contraseña: teddysun.com):" shadowsockspwd
+    echo "Por favor, digite a senha para ${software[${selected}-1]}"
+    read -p "(Senha padrão: teddysun.com):" shadowsockspwd
     [ -z "${shadowsockspwd}" ] && shadowsockspwd="teddysun.com"
     msg -bar
-    echo "Contraseña = ${shadowsockspwd}"
+    echo "Senha = ${shadowsockspwd}"
     msg -bar
 }
 
@@ -635,26 +635,26 @@ install_prepare_port() {
     while true
     do
     dport=$(shuf -i 9000-19999 -n 1)
-    echo -e "Por favor ingrese un puerto para ${software[${selected}-1]} [1-65535]"
-    read -p "(Default port: ${dport}):" shadowsocksport
+    echo -e "Insira uma porta para ${software[${selected}-1]} [1-65535]"
+    read -p "(Porta padão: ${dport}):" shadowsocksport
     [ -z "${shadowsocksport}" ] && shadowsocksport=${dport}
     expr ${shadowsocksport} + 1 &>/dev/null
     if [ $? -eq 0 ]; then
         if [ ${shadowsocksport} -ge 1 ] && [ ${shadowsocksport} -le 65535 ] && [ ${shadowsocksport:0:1} != 0 ]; then
             msg -bar
-            echo "Puerto = ${shadowsocksport}"
+            echo "Porta = ${shadowsocksport}"
             msg -bar
             break
         fi
     fi
-    echo -e "[${red}Error${plain}] Please enter a correct number [1-65535]"
+    echo -e "[${red}Error${plain}] Insira um número correto [1-65535]"
     done
 }
 
 install_prepare_cipher(){
     while true
     do
-    echo -e "Por favor seleccione la secuencia de cifrado para ${software[${selected}-1]}:"
+    echo -e "Selecione a sequência de criptografia para ${software[${selected}-1]}:"
     msg -bar
     if   [[ "${selected}" == "1" || "${selected}" == "4" ]]; then
         for ((i=1;i<=${#common_ciphers[@]};i++ )); do
@@ -662,15 +662,15 @@ install_prepare_cipher(){
             echo -e "${green}${i}${plain}) ${hint}"
         done
 		msg -bar
-        read -p "¿Qué cifrado elegirías?(Default: ${common_ciphers[0]}):" pick
+        read -p "Qual criptografia você escolheria? (Padrão: ${common_ciphers[0]}):" pick
         [ -z "$pick" ] && pick=1
         expr ${pick} + 1 &>/dev/null
         if [ $? -ne 0 ]; then
-            echo -e "[${red}Error${plain}] Please enter a number"
+            echo -e "[${red}Error${plain}] Por favor, coloque um numero"
             continue
         fi
         if [[ "$pick" -lt 1 || "$pick" -gt ${#common_ciphers[@]} ]]; then
-            echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#common_ciphers[@]}"
+            echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#common_ciphers[@]}"
             continue
         fi
         shadowsockscipher=${common_ciphers[$pick-1]}
@@ -680,15 +680,15 @@ install_prepare_cipher(){
             echo -e "${green}${i}${plain}) ${hint}"
         done
 		msg -bar
-        read -p "¿Qué cifrado elegirías?(Default: ${r_ciphers[1]}):" pick
+        read -p "Qual cifra você escolheria? (Padrão: ${r_ciphers[1]}):" pick
         [ -z "$pick" ] && pick=2
         expr ${pick} + 1 &>/dev/null
         if [ $? -ne 0 ]; then
-            echo -e "[${red}Error${plain}] Please enter a number"
+            echo -e "[${red}Error${plain}] Por favor, coloque um numero"
             continue
         fi
         if [[ "$pick" -lt 1 || "$pick" -gt ${#r_ciphers[@]} ]]; then
-            echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#r_ciphers[@]}"
+            echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#r_ciphers[@]}"
             continue
         fi
         shadowsockscipher=${r_ciphers[$pick-1]}
@@ -698,22 +698,22 @@ install_prepare_cipher(){
             echo -e "${green}${i}${plain}) ${hint}"
         done
 		msg -bar
-        read -p "¿Qué cifrado elegirías?(Default: ${go_ciphers[0]}):" pick
+        read -p "Qual cifra você escolheria? (Padrão: ${go_ciphers[0]}):" pick
         [ -z "$pick" ] && pick=1
         expr ${pick} + 1 &>/dev/null
         if [ $? -ne 0 ]; then
-            echo -e "[${red}Error${plain}] Please enter a number"
+            echo -e "[${red}Error${plain}] Por favor, coloque um numero"
             continue
         fi
         if [[ "$pick" -lt 1 || "$pick" -gt ${#go_ciphers[@]} ]]; then
-            echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#go_ciphers[@]}"
+            echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#go_ciphers[@]}"
             continue
         fi
         shadowsockscipher=${go_ciphers[$pick-1]}
     fi
 
     msg -bar
-    echo "Cifrado = ${shadowsockscipher}"
+    echo "cifra = ${shadowsockscipher}"
     msg -bar
     break
     done
@@ -722,25 +722,25 @@ install_prepare_cipher(){
 install_prepare_protocol(){
     while true
     do
-    echo -e "Please select protocol for ${software[${selected}-1]}:"
+    echo -e "Selecione o protocolo para ${software[${selected}-1]}:"
     for ((i=1;i<=${#protocols[@]};i++ )); do
         hint="${protocols[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
-    read -p "Which protocol you'd select(Default: ${protocols[0]}):" protocol
+    read -p "Qual protocolo você selecionaria (Padrão: ${protocols[0]}):" protocol
     [ -z "$protocol" ] && protocol=1
     expr ${protocol} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
-        echo -e "[${red}Error${plain}] Please enter a number"
+        echo -e "[${red}Error${plain}] Por favor, coloque um numero"
         continue
     fi
     if [[ "$protocol" -lt 1 || "$protocol" -gt ${#protocols[@]} ]]; then
-        echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#protocols[@]}"
+        echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#protocols[@]}"
         continue
     fi
     shadowsockprotocol=${protocols[$protocol-1]}
     echo
-    echo "protocol = ${shadowsockprotocol}"
+    echo "Protocolo = ${shadowsockprotocol}"
     echo
     break
     done
