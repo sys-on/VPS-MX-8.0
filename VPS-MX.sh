@@ -153,7 +153,7 @@ sed -i "s;Listen 80;Listen 81;g" /etc/apache2/ports.conf
 service apache2 restart
 clear
 msg -bar2
-echo -e "ESCOLHA PRIMEIRO #All locales# Y LUEGO #en_US.UTF-8# " 
+echo -e "ESCOLHA PRIMEIRO #tudo local# E LOGO #en_US.UTF-8# " 
 clear
 export LANGUAGE=en_US.UTF-8\
   && export LANG=en_US.UTF-8\
@@ -181,14 +181,14 @@ MIP2=$(wget -qO- ipv4.icanhazip.com)
 [[ "$MIP" != "$MIP2" ]] && IP="$MIP2" || IP="$MIP"
 }  
 function_verify () {
-  permited=$(curl -sSL "https://raw.githubusercontent.com/sycNET/Control/main/Control-IP")
+  permited=$(curl -sSL "https://raw.githubusercontent.com/sys-on/Control/main/Control-IP")
   [[ $(echo $permited|grep "${IP}") = "" ]] && {
-  echo -e "\n\n\n\033[1;95m======================================================\n ¡ESTA KEY NO CONCUERDA CON EL INSTALADOR!,CONATACTE A @Rufu99\n======================================================\n"
+  echo -e "\n\n\n\033[1;95m======================================================\n ¡ESTA CHAVE NÃO É VÁLIDA COMO A VERSÃO ATUAL!, ENTRE EM CONTATO @SYS-ON\n======================================================\n"
   [[ -d /etc/newadm ]] && rm -rf /etc/newadm
   exit 1
   } || {
   ### INTALAR VERCION DE SCRIPT
-  v1=$(curl -sSL "https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/maIn/Vercion")
+  v1=$(curl -sSL "https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/Vercion")
   echo "$v1" > /etc/versin_script
   }
 }
@@ -207,11 +207,11 @@ msg -ama "              Finalizando a instalação" && msg bar2
 [[ $(find /etc/newadm/ger-user -name IDT.log|grep -w "IDT.log"|head -1) ]] || wget -O /etc/newadm/ger-user/IDT.log https://raw.githubusercontent.com/NDsVPN/VPS-MX-8.0/main/ArchivosUtilitarios/IDT.log &>/dev/null
 [[ $(find /etc/newadm/ger-user -name tiemlim.log|grep -w "tiemlim.log"|head -1) ]] || wget -O /etc/newadm/ger-user/tiemlim.log https://raw.githubusercontent.com/NDsVPN/VPS-MX-8.0/main/ArchivosUtilitarios/tiemlim.log &>/dev/null
 
-wget -O /bin/rebootnb https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/rebootnb &> /dev/null
+wget -O /bin/rebootnb https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/rebootnb &> /dev/null
 chmod +x /bin/rebootnb 
-wget -O /bin/resetsshdrop https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/resetsshdrop &> /dev/null
+wget -O /bin/resetsshdrop https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/resetsshdrop &> /dev/null
 chmod +x /bin/resetsshdrop
-wget -O /etc/versin_script_new https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/Vercion &>/dev/null
+wget -O /etc/versin_script_new https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/Vercion &>/dev/null
 msg -bar2
 echo '#!/bin/sh -e' > /etc/rc.local
 sudo chmod +x /etc/rc.local
@@ -235,10 +235,10 @@ echo 'echo -e "\033[0;49;96m         \_/  |_|   |____/   /_/     \_|_|  \_\ " '>
 echo 'echo "" '>> .bashrc
 echo 'mess1="$(less /etc/newadm/message.txt)" ' >> .bashrc
 echo 'echo "" '>> .bashrc
-echo 'echo -e "\033[92m        RESELLER : $mess1 "'>> .bashrc
+echo 'echo -e "\033[92m        REVENDEDOR : $mess1 "'>> .bashrc
 echo 'echo "" '>> .bashrc                                               
 echo 'echo -e "\033[97m   PARA MOSTRO PAINEL  DIGITE:  sudo menu "'>> .bashrc
-echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/master/Vercion &>/dev/null'>> .bashrc
+echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/master/Vercion &>/dev/null'>> .bashrc
 echo 'echo ""'>> .bashrc
 echo -e "        COMANDO PRINCIPAL PARA ENTRAR NO PAINEL "
 echo -e "\033[1;41m                     sudo menu                        \033[0;37m" && msg -bar2
@@ -295,7 +295,7 @@ chmod +x ${ARQ}/$1
 
 NOTIFY () {
 msg -bar
-msg -ama " Notify-BOT (Notificasion Remota)| VPS-MX By @Kalix1 "
+msg -ama " Notify-BOT (Notificação Remota)| VPS-MX By @SYS-ON "
 msg -bar
 echo -e "\033[1;94m É uma opção para notificar quando\n um usuário está bloqueado ou expirou e as informações do VPS."
 echo -e "\033[1;97m Para usar o BOT do Telegram @Noti_VPSMX_Bot"
@@ -321,41 +321,41 @@ MSG="⚠️ AVISO DE VPS: $NOM1 ⚠️
 🔰 SUCESSO... SAUDAÇÕES"
 curl -s --max-time 10 -d "chat_id=$IDB2&disable_web_page_preview=1&text=$MSG" $URL &>/dev/null
 
-echo -e "\033[1;34m MENSAGEM DE TESTE FOI ENVIADA CASO NÃO CHEGUE, ENTRE EM CONTATO CONOSCO A @Kalix1 "
+echo -e "\033[1;34m MENSAGEM DE TESTE FOI ENVIADA CASO NÃO CHEGUE, ENTRE EM CONTATO CONOSCO A @SyS-ON "
 }
 fun_ip
-wget -O /usr/bin/trans https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/trans &> /dev/null
-wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/Desbloqueo.sh &> /dev/null
+wget -O /usr/bin/trans https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/trans &> /dev/null
+wget -O /bin/Desbloqueo.sh https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/Desbloqueo.sh &> /dev/null
 chmod +x /bin/Desbloqueo.sh
-wget -O /bin/monitor.sh https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/Monitor-Service/monitor.sh &> /dev/null
+wget -O /bin/monitor.sh https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/Monitor-Service/monitor.sh &> /dev/null
 chmod +x /bin/monitor.sh
-wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/Monitor-Service/estilos.css &> /dev/null
+wget -O /var/www/html/estilos.css https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/Monitor-Service/estilos.css &> /dev/null
 msg -bar2
 msg -bar2
-msg -ama "     [ VPS - MX - SCRIPT \033[1;97m ❌ MOD By @Kalix1 ❌\033[1;33m ]"
+msg -ama "     [ VPS - MX - SCRIPT \033[1;97m ❌ MOD By @SyS-ON ❌\033[1;33m ]"
 msg -ama "  \033[1;96m      🔰Usar Ubuntu 18 a 64 De Preferencia🔰 "
 msg -bar2
 [[ $1 = "" ]] && funcao_idioma || {
 [[ ${#1} -gt 2 ]] && funcao_idioma || id="$1"
  }
 error_fun () {
-msg -bar2 && msg -verm "ERROR no link VPS<-->GENERADOR" && msg -bar2
+msg -bar2 && msg -verm "ERROR no link VPS<-->GERADOR" && msg -bar2
 [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
 exit 1
 }
 invalid_key () {
-msg -bar2 && msg -verm "#¡Key Invalida#! " && msg -bar2
+msg -bar2 && msg -verm "#¡Chave inválida#! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
 exit 1
 }
 while [[ ! $Key ]]; do
-msg -bar2 && msg -ne "# DIGITE A KEY #: " && read Key
+msg -bar2 && msg -ne "# DIGITE A CHAVE #: " && read Key
 tput cuu1 && tput dl1
 done
-msg -ne "# Verificando Key # : "
+msg -ne "# Verificando Chave # : "
 cd $HOME
-wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Key Completa" || {
-   echo -e "\033[1;91m Key Incompleta"
+wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Chave Completa" || {
+   echo -e "\033[1;91m Chave Incompleta"
    invalid_key
    exit
    }
@@ -363,9 +363,9 @@ IP=$(ofus "$Key" | grep -vE '127\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' | grep -o 
 sleep 1s
 function_verify
 updatedb
-if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
+if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "CHAVE INVALIDA!") ]]; then
    msg -bar2
-   msg -verd "$(source trans -b es:${id} " INSTALANDO"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX #MOD by @Kalix1]"
+   msg -verd "$(source trans -b es:${id} " INSTALANDO"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX #MOD by @SYS-ON]"
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    pontos="."
@@ -388,7 +388,7 @@ if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") 
    echo "$Key" > ${SCPdir}/key.txt
    [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}   
    [[ ${#id} -gt 2 ]] && echo "es" > ${SCPidioma} || echo "${id}" > ${SCPidioma}
-   echo -e "${cor[2]}         DESEJA INSTALAR NOTI-BOT?(Default n)"
+   echo -e "${cor[2]}         DESEJA INSTALAR NOTI-BOT?(Padrão n)"
    echo -e "\033[1;34m  (Você deve ter o Telegram e o BOT: @Noti_VPSMX_Bot)"
    msg -bar2
    read -p " [ s | n ]: " NOTIFY   
