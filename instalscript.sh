@@ -88,7 +88,7 @@ otro_fun () {
     echo " 3).- Debin  8.11 "
     echo " 4).- Outro"
 	msg -bar
-	echo -n "Digite apenas o número de acordo com sua sistema: "
+	echo -n "Digite apenas o número de acordo com seu sistema: "
     read opcao
     case $opcao in
     1)
