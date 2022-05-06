@@ -30,7 +30,7 @@ Tip="${Green_font_prefix}[ NOTA ]${Font_color_suffix}"
 Separator_1="——————————————————————————————"
 
 check_root(){
-	[[ $EUID != 0 ]] && echo -e "${Error} A conta atual não é ROOT (não tem permissão ROOT), não pode continuar a operação, por favor ${Green_background_prefix} sudo su ${Font_color_suffix} Venga a ROOT (le pedire que ingrese la contraseña de la cuenta actual despues de la ejecucion)" && exit 1
+	[[ $EUID != 0 ]] && echo -e "${Error} A conta atual não é ROOT (não tem permissão ROOT), não pode continuar a operação, por favor ${Green_background_prefix} sudo seu ${Font_color_suffix} Venha para ROOT (ele vai pedir para você digitar a senha da conta atual após a execução)" && exit 1
 }
 check_sys(){
 	if [[ -f /etc/redhat-release ]]; then
@@ -293,18 +293,18 @@ ss_ssr_determine(){
 			ss_link_qr
 			ssr_link=""
 		else
-			if [[ ${obfs_suffix} != "compatible" ]]; then
+			if [[ ${obfs_suffix} != "compatível" ]]; then
 				ss_link=""
 			else
 				ss_link_qr
 			fi
 		fi
 	else
-		if [[ ${protocol_suffix} != "compatible" ]]; then
+		if [[ ${protocol_suffix} != "compatível" ]]; then
 			ss_link=""
 		else
-			if [[ ${obfs_suffix} != "compatible" ]]; then
-				if [[ ${obfs_suffix} = "plain" ]]; then
+			if [[ ${obfs_suffix} != "ccompatível" ]]; then
+				if [[ ${obfs_suffix} = "avião" ]]; then
 					ss_link_qr
 				else
 					ss_link=""
@@ -345,7 +345,7 @@ View_User_info(){
 	clear 
 	echo -e " Usuario [{user_name}] Informações da Conta:"
 msg -bar
-    echo -e " PAINEL VPS-MX By @Kalix1"
+    echo -e " PAINEL VPS-MX By @SyS-ON"
 	
 	echo -e " IP : ${Green_font_prefix}${ip}${Font_color_suffix}"
 
@@ -355,7 +355,7 @@ msg -bar
 
 	echo -e " Criptografia : ${Green_font_prefix}${method}${Font_color_suffix}"
 
-	echo -e " Protocol : ${Red_font_prefix}${protocol}${Font_color_suffix}"
+	echo -e " Protocolo : ${Red_font_prefix}${protocol}${Font_color_suffix}"
 
 	echo -e " Obfs : ${Red_font_prefix}${obfs}${Font_color_suffix}"
 
@@ -1216,7 +1216,7 @@ msg -bar
 Modify_Config(){
 clear
 	SSR_installation_status
-	echo && echo -e "    ###¿Que deseja realizar?###Mod By @Kalix1
+	echo && echo -e "    ###O que você quer fazer??###Mod By @SyS-ON
 $(msg -bar)
  ${Green_font_prefix}1.${Font_color_suffix}  Adicionar e configurar usuário
  ${Green_font_prefix}2.${Font_color_suffix}  Excluir configurações do usuário
@@ -1973,7 +1973,7 @@ msg -bar
 	if [[ -e ${ssr_folder} ]]; then
 		check_pid
 		if [[ ! -z "${PID}" ]]; then
-			echo -e "         VPS-MX By @Kalix1\n Estado atual: ${Green_font_prefix}Instalado${Font_color_suffix} e ${Green_font_prefix}Iniciado${Font_color_suffix}"
+			echo -e "         VPS-MX By @SyS-ON\n Estado atual: ${Green_font_prefix}Instalado${Font_color_suffix} e ${Green_font_prefix}Iniciado${Font_color_suffix}"
 		else
 			echo -e " Estado atual: ${Green_font_prefix}Instalado${Font_color_suffix} mas ${Red_font_prefix}não começou${Font_color_suffix}"
 		fi
@@ -1990,7 +1990,7 @@ if [[ "${action}" == "clearall" ]]; then
 elif [[ "${action}" == "monitor" ]]; then
 	crontab_monitor_ssr
 else
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SyS-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 echo -e "        Controlador de ShadowSock-R  ${Red_font_prefix}[v${sh_ver}]${Font_color_suffix}
 $(msg -bar)

@@ -28,7 +28,7 @@ newclient () {
 usermod -p $(openssl passwd -1 $2) $1
   while [[ ${newfile} != @(s|S|y|Y|n|N) ]]; do
 msg -bar
-   read -p "Crear Archivo OpenVPN? [S/N]: " -e -i S newfile
+   read -p "Criar arquivo OpenVPN? [S/N]: " -e -i S newfile
    tput cuu1 && tput dl1
   done
 if [[ ${newfile} = @(s|S) ]]; then
@@ -55,7 +55,7 @@ if [[ ${newfile} = @(s|S) ]]; then
 	echo "</tls-auth>" >> ~/$1.ovpn
 	
   while [[ ${ovpnauth} != @(s|S|y|Y|n|N) ]]; do
-    read -p "$(fun_trans "Colocar autenticacion de usuario en el archivo")? [S/N]: " -e -i S ovpnauth
+    read -p "$(fun_trans "Coloque a autenticação do usuário no arquivo")? [S/N]: " -e -i S ovpnauth
     tput cuu1 && tput dl1
   done
   [[ ${ovpnauth} = @(s|S) ]] && sed -i "s;auth-user-pass;<auth-user-pass>\n$1\n$2\n</auth-user-pass>;g" ~/$1.ovpn
@@ -63,7 +63,7 @@ if [[ ${newfile} = @(s|S) ]]; then
   zip ./$1.zip ./$1.ovpn > /dev/null 2>&1
   rm ./$1.ovpn > /dev/null 2>&1
 
-  echo -e "\033[1;31m$(fun_trans "Archivo creado"): ($HOME/$1.zip)"
+  echo -e "\033[1;31m$(fun_trans "Arquivo criado"): ($HOME/$1.zip)"
  fi
 }
 
@@ -77,9 +77,9 @@ done
 }
 
 eliminar_all () {
-echo -e "\033[1;31m  ELIMINANDO TODOS LOS USUARIOS"
+echo -e "\033[1;31m  EXCLUINDO TODOS OS USUÁRIOS"
 msg -bar
-read -p "►► Presione enter para continuar ◄◄"
+read -p "►► Pressione enter para continuar ◄◄"
 service dropbear stop &>/dev/null
 service sshd stop &>/dev/null
 service ssh stop &>/dev/null
@@ -105,17 +105,17 @@ msg -bar
 }
 
 reset_contador () {
-echo -e "\033[1;33m  REINICIAR CONTADOR DE BLOQUEOS"
+echo -e "\033[1;33m  REINICIAR CONTADOR DE BLOCOS"
 msg -bar
-echo -e "\033[1;97m !! Usar unicamente cuando en el apartado del contador\nmarque alguna cantidad erronea. ¡¡"
+echo -e "\033[1;97m !! Use apenas quando na seção do contador\nmarque o valor errado. ¡¡"
 echo ""
-echo -e "\033[1;91m Salir   CTRL+C"
+echo -e "\033[1;91m Sair CTRL+C"
 msg -bar
-read -p "►► Presione enter para continuar ◄◄"
+read -p "►► Pressione enter para continuar ◄◄"
 rm -rf /etc/newadm-userlock
 rm -rf /etc/newadm/ger-user/Limiter.log
 unlockall2
-echo -e "\033[1;92m   ¡¡CONTADORES REINICIADOS!!"
+echo -e "\033[1;92m  !!REINICIAR CONTADORES!!"
 msg -bar
 }
 
@@ -222,11 +222,11 @@ let Numb++
 done
 msg -bar
 fi
-msg -ama "$(fun_trans "Escriba o Seleccione Un Usuario")"
+msg -ama "$(fun_trans "Digite ou selecione um usuário")"
 msg -bar
 unset selection
 while [[ ${selection} = "" ]]; do
-echo -ne "\033[1;37mSeleccione: " && read selection
+echo -ne "\033[1;37mSelecionar: " && read selection
 tput cuu1 && tput dl1
 done
 if [[ ! $(echo "${selection}" | egrep '[^0-9]') ]]; then
@@ -235,16 +235,16 @@ else
 usuario_del="$selection"
 fi
 [[ -z $usuario_del ]] && {
-     msg -verm "$(fun_trans "Error, Usuario Invalido")"
+     msg -verm "$(fun_trans "Erro, usuário inválido")"
      msg -bar
      return 1
      }
 [[ ! $(echo ${usuarios_ativos[@]}|grep -w "$usuario_del") ]] && {
-     msg -verm "$(fun_trans "Error, Usuario Invalido")"
+     msg -verm "$(fun_trans "Erro, usuário inválido")"
      msg -bar
      return 1
      }
-msg -ne "$(fun_trans "Usuario Seleccionado"): " && echo -ne "$usuario_del "
+msg -ne "$(fun_trans "Usuário selecionado"): " && echo -ne "$usuario_del "
 block_userfun "$usuario_del" && msg -verm "[$(fun_trans "Bloqueado")]" || msg -verd "[$(fun_trans "Desbloqueado")]"
 msg -bar
 }
@@ -394,10 +394,10 @@ err_fun () {
 new_user () {
 usuarios_ativos=($(mostrar_usuarios))
 if [[ -z ${usuarios_ativos[@]} ]]; then
-msg -verm "$(fun_trans "Ningun usuario registrado")"
+msg -verm "$(fun_trans "Nenhum usuário cadastrado")"
 msg -bar
 else
-msg -ama "$(fun_trans "Usuarios Actualmente Activos En El Servidor")"
+msg -ama "$(fun_trans "Usuários atualmente ativos no servidor")"
 msg -bar
 for us in $(echo ${usuarios_ativos[@]}); do
 msg -ne "Usuario: " && echo "${us}"
@@ -405,7 +405,7 @@ done
 msg -bar
 fi
 while true; do
-     msg -ne "$(fun_trans "Nombre Del Nuevo Usuario")"
+     msg -ne "$(fun_trans "Novo usuário")"
      read -p ": " nomeuser
      nomeuser="$(echo $nomeuser|sed -e 's/[^a-z0-9 -]//ig')"
      if [[ -z $nomeuser ]]; then

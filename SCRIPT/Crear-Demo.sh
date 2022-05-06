@@ -69,7 +69,7 @@ touch /etc/adm/usuarios/$name
 echo "senha: $pass" >> /etc/adm/usuarios/$name
 echo "data: ($tmp)Minutos" >> /etc/adm/usuarios/$name
 msg -bar2
-echo -e "\033[1;93m ¡¡ USUÁRIO TEMPORÁRIO x MINUTOS (VPS-MX By @Kalix1) !!\033[0m"
+echo -e "\033[1;93m ¡¡ USUÁRIO TEMPORÁRIO x MINUTOS (VPS-MX By @SyS-ON) !!\033[0m"
 msg -bar2
 echo -e "\033[1;36m IP do servidor: \033[0m$(meu_ip) " 
 echo -e "\033[1;36m Usuário: \033[0m$name"

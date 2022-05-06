@@ -96,7 +96,7 @@ IP="$(meu_ip)"
 instala_ovpn2 () {
 clear
 msg -bar
-echo -e "\033[1;32m     INSTALADOR DE OPENVPN | VPS-MX By @Kalix1"
+echo -e "\033[1;32m     INSTALADOR DE OPENVPN | VPS-MX By @Sys-ON"
 msg -bar
 	# OpenVPN setup and first user creation
 echo -e "\033[1;97mEl script precisa de certos parâmetros para configurar OpenVPN."
@@ -418,7 +418,7 @@ wget -q -O - https://swupdate.openvpn.net/repos/repo-public.gpg | apt-key add - 
 fi
 }
 coleta_variaveis () {
-echo -e "\033[1;32m     INSTALADOR DE OPENVPN | VPS-MX By @Kalix1"
+echo -e "\033[1;32m     INSTALADOR DE OPENVPN | VPS-MX By @Sys-ON"
 msg -bar
 msg -ne " Confirme seu IP"; read -p ": " -e -i $IP ip
 msg -bar

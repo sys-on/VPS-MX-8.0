@@ -76,7 +76,7 @@ SEMCOR='\e[0m'
 canbio_color () {
 clear
 msg -bar2
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 msg -ama "   Alterar Cores do Painel \033[1;31m[\033[1;32m VPS-MX \033[1;97m #MOD MX# \033[1;31m]"
 msg -bar2
@@ -107,7 +107,7 @@ SCPidioma="${SCPdir}/idioma"
 local LINGUAGE=$(cat ${SCPidioma})
 [[ -z $LINGUAGE ]] && LINGUAGE=es
 [[ $LINGUAGE = "es" ]] && echo "$@" && return
-[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/SycNET/VPS-MX-8.0/main/ArchivosUtilitarios/trans &> /dev/null
+[[ ! -e /usr/bin/trans ]] && wget -O /usr/bin/trans https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/trans &> /dev/null
 [[ ! -e /etc/texto-adm ]] && touch /etc/texto-adm
 source /etc/texto-adm
 if [[ -z "$(echo ${texto[$@]})" ]]; then
@@ -121,7 +121,7 @@ echo "${texto[$@]}"
 fi
 }
 atualiza_fun () {
-wget https://raw.githubusercontent.com/SycNET/VPS-MX-8.0/main/instalscript.sh &> /dev/null; chmod 777 instalscript.sh* && ./instalscript.sh*
+wget https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/instalscript.sh &> /dev/null; chmod 777 instalscript.sh* && ./instalscript.sh*
 msg -bar2
 }
 funcao_idioma () {
@@ -171,7 +171,7 @@ echo "$(echo ${idioma[$selection]}|cut -d' ' -f1)" > ${SCPidioma}
 mine_port () {
 clear
 msg -bar
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 echo -e "\033[1;93m     INFORMAÇÕES DO SISTEMA E PORTAS ATIVAS"
 msg -bar2
@@ -566,7 +566,7 @@ clear
 
 tput cuu1 && tput dl1
 msg -bar2
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 msg -ama "                 MENU DE FERRAMENTAS"
 msg -bar2
@@ -663,7 +663,7 @@ done <<< "$portas_var"
 menu_inst () {
 clear
 msg -bar
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 export -f fun_eth
 export -f fun_bar
@@ -723,7 +723,7 @@ export -f fun_ip
 clear
 #########VISUALIZACION DE MENU
 msg -bar
-echo -e "\e[97m\033[1;41m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\e[97m\033[1;41m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 echo -e "\033[1;31m   CPU: \033[1;37mNo. DE NUCLEOS:\033[1;32m $_core \033[1;37m\033[1;31m FECHA: \033[1;37m$_hora"
 echo -e "\033[1;31m   RAM: \033[1;37m TOTAL: \033[1;32m$ram1 \033[1;37m USADA: \033[1;32m$ram3 \033[1;37m LIVRE: \033[1;32m$ram2"
@@ -756,7 +756,7 @@ sed -i "65d" /bin/monitor.sh
 sed -i '65i EstadoServicio apache2' /bin/monitor.sh
 }
 msg -bar
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 echo -e "\033[1;32m          MONITOR DE SERVICIONS PRINCIPALES"
 

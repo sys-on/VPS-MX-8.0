@@ -174,7 +174,7 @@ echo -e " DATA ARG LOCAL APLICADA!"
 gestor_fun () {
 clear
 msg -bar
-echo -e "\033[1;37m       =====>>►► 🐲 PAINEL SycNET VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL Sys-ON VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
 echo -e " ${cor[3]}            CONFIGURAÇÕES DO VPS INTERNO  "
 msg -bar
