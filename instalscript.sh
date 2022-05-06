@@ -85,8 +85,8 @@ otro_fun () {
     msg -bar
     echo " 1).- Ubuntu 16.04 "
     echo " 2).- Ubuntu 18.04 "
-    echo " 3).- Debin "
-    echo " 4).- Outro"
+    #echo " 3).- Debin "
+    echo " 3).- Outro"
 	msg -bar
 	echo -n "Digite apenas o número de acordo com sua resposta: "
     read opcao
