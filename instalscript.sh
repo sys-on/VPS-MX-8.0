@@ -48,7 +48,7 @@ if [ ! -d "$INSTALL_DIR" ]; then
 	rm -rf /usr/bin/vpsmxup
     wget https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/zzupdate-master/zzupdate.sh -O /usr/bin/vpsmxup &> /dev/null
 	chmod +x /usr/bin/vpsmxup
-	echo -e  "\033[1;97m              Copiando o instalador interno "
+	echo -e  "\033[1;97m            Copiando o instalador interno "
 	
 	echo "           --------------------------------"	
 	
