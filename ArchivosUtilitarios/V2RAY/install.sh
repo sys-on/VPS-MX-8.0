@@ -57,7 +57,7 @@ while [[ $# > 0 ]];do
         ;;
         -k|--keep)
         INSTALL_WAY=1
-        colorEcho ${BLUE} "keep v2ray profile to update\n"
+        colorEcho ${BLUE} "Mantenha o perfil v2ray para atualizar\n"
         ;;
         --zh)
         CHINESE=1
@@ -116,7 +116,7 @@ removeV2Ray() {
     sed -i '/v2ray/d' ~/$ENV_FILE
     source ~/$ENV_FILE
 
-    colorEcho ${GREEN} "uninstall success!"
+    colorEcho ${GREEN} "sucesso de desinstalação!"
 }
 
 closeSELinux() {
@@ -129,7 +129,7 @@ closeSELinux() {
 
 checkSys() {
     #检查是否为Root
-    [ $(id -u) != "0" ] && { colorEcho ${RED} "Error: You must be root to run this script"; exit 1; }
+    [ $(id -u) != "0" ] && { colorEcho ${RED} "Erro: você deve ser root para executar este script"; exit 1; }
 
     #检查系统信息
     if [[ -e /etc/redhat-release ]];then
@@ -150,7 +150,7 @@ checkSys() {
         OS='Raspbian'
         PACKAGE_MANAGER='apt-get'
     else
-        colorEcho ${RED} "Not support OS, Please reinstall OS and retry!"
+        colorEcho ${RED} "Não suporta SO, reinstale o SO e tente novamente!"
         exit 1
     fi
 }
@@ -198,7 +198,7 @@ planUpdate(){
 		service cron restart
 	fi
 	rm -f crontab.txt
-	colorEcho ${GREEN} "success open schedule update task: beijing time ${BEIJING_UPDATE_TIME}\n"
+	colorEcho ${GREEN} "tarefa de atualização de agenda aberta de sucesso: hora de pequim ${BEIJING_UPDATE_TIME}\n"
 }
 
 updateProject() {
@@ -238,14 +238,14 @@ updateProject() {
 #时间同步
 timeSync() {
     if [[ ${INSTALL_WAY} == 0 ]];then
-        echo -e "${Info} Time Synchronizing.. ${Font}"
+        echo -e "${Info} Sincronização de tempo.. ${Font}"
         ntpdate pool.ntp.org
         if [[ $? -eq 0 ]];then 
-            echo -e "${OK} Time Sync Success ${Font}"
+            echo -e "${OK} Sucesso de sincronização de tempo ${Font}"
             echo -e "${OK} now: `date -R`${Font}"
             sleep 1
         else
-            echo -e "${Error} Time sync fail, please run command to sync:${Font}${Yellow}ntpdate pool.ntp.org${Font}"
+            echo -e "${Error} Falha na sincronização de tempo, execute o comando para sincronizar:${Font}${Yellow}ntpdate pool.ntp.org${Font}"
         fi
     fi
 }
@@ -277,13 +277,13 @@ installFinish() {
     cd ${BEGIN_PATH}
 
     [[ ${INSTALL_WAY} == 0 ]] && WAY="install" || WAY="update"
-    colorEcho  ${GREEN} "multi-v2ray ${WAY} success!\n"
+    colorEcho  ${GREEN} "multi-v2ray ${WAY} sucesso!\n"
 
     clear
 
     v2ray info
 
-    echo -e "please input 'v2ray' command to manage v2ray\n"
+    echo -e "por favor, insira o comando 'v2ray' para gerenciar v2ray\n"
 }
 
 
