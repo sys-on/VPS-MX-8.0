@@ -91,7 +91,7 @@ title(){
 # finalizacion de tareas
  enter(){
   msg -bar
-  text="►► Presione enter para continuar ◄◄"
+  text="►► Pressione enter para continuar ◄◄"
   if [[ -z $1 ]]; then
     print_center -ama "$text"
   else
@@ -103,7 +103,7 @@ title(){
 # opcion, regresar volver/atras
 back(){
     msg -bar
-    echo -ne "$(msg -verd " [0]") $(msg -verm2 ">") " && msg -bra "\033[1;41mVOLVER"
+    echo -ne "$(msg -verd " [0]") $(msg -verm2 ">") " && msg -bra "\033[1;41mVOLTA"
     msg -bar
  }
 
@@ -137,7 +137,7 @@ selection_fun(){
   fi
   for((i=0; i<=$opcion; i++)); do range[$i]="$i "; done
   while [[ ! $(echo ${range[*]}|grep -w "$selection") ]]; do
-    msg "$col" " Selecione una Opcion: " >&2
+    msg "$col" " Selecione uma opção: " >&2
     read selection
     tput cuu1 >&2 && tput dl1 >&2
   done
