@@ -22,7 +22,7 @@ AZUL='\e[34m' && MAGENTA='\e[35m' && MAG='\033[1;36m' &&NEGRITO='\e[1m' && SEMCO
 clear
  msg -bar2
  msg -ama "     [ VPS - MX - SCRIPT \033[1;97m ❌ MOD By @Sys-ON ❌\033[1;33m ]"
- echo -e  "\033[1;97m               ATUALIZAÇÃO EM EXECUÇÃO  \033[1;34m "
+ echo -e  "\033[1;97m               ATUALIZAÇÃO EM ANDAMENTO  \033[1;34m "
  msg -bar2
 ## Script name
 SCRIPT_NAME=vpsmxup
