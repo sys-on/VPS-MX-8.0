@@ -167,10 +167,10 @@ clear
 msg -bar2
 echo -e "\033[1;97m     ¿APLIQUE CORREÇÃO PARA CORRIGIR ERROS?" 
 msg -bar2
-echo -e "\033[1;32m 1- Escoja:(N) Para instalação normal"
-echo -e "\033[1;31m 2- Escoja:(S) Se você já tentar instalar o script y\n Apresento erros, aplique este patch."
+echo -e "\033[1;32m 1-Escolha:(N) Para instalação normal"
+echo -e "\033[1;31m 2-Escolha:(S) Se você já tentar instalar o script y\n Apresento erros, aplique este patch."
 msg -bar2
-echo -e "\033[1;39m Pressionar N continuará a instalação Normalmente"
+echo -e "\033[1;39m Pressione N continua a instalação Normalmente"
 msg -bar2
 read -p " [ S | N ]: " idfix64_86   
 [[ "$idfix64_86" = "s" || "$idfix64_86" = "S" ]] && idfix64_86
