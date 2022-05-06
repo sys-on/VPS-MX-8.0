@@ -81,7 +81,7 @@ otro_fun () {
 	echo -e "\033[1;97m           ---- QUAL SISTEMA ESTÁ USANDO ----"
 	echo -e "\033[1;97m  Digite apenas o número de acordo com sua resposta: "
     msg -bar
-    echo -e "\033[1;97m Escolha a opção desejada."
+    echo -e "\033[1;97m  Escolha a opção desejada."
     msg -bar
     echo " 1).- Ubuntu 16.04 "
     echo " 2).- Ubuntu 18.04 "
