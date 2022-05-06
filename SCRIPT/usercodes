@@ -922,7 +922,7 @@ DateExp=$(echo ${line}|cut -d'|' -f3)
 DataSec=$(date +%s --date="$DateExp")
 [[ "$VPSsec" -lt "$DataSec" ]] && dias="$(($(($DataSec - $VPSsec)) / 86400))" || dias="NP"
 limite=$(echo ${line}|cut -d'|' -f4)
-add_user "$nome" "$senha" "$dias" "$limite" &>/dev/null && msg -verd "$nome [CUENTA VALIDA]" || msg -verm "$nome [CUENTA INVALIDA FECHA EXPIRADA]"
+add_user "$nome" "$senha" "$dias" "$limite" &>/dev/null && msg -verd "$nome [CONTA VALIDA]" || msg -verm "$nome [CUENTA INVALIDA FECHA EXPIRADA]"
 done < ${dirbackup}
 ;;
 esac
@@ -933,13 +933,13 @@ msg -bar
 
 verif_funx () {
 
-echo -e "\033[1;32m             LIMITADOR DE CUENTAS"
+echo -e "\033[1;32m             LIMITADOR DE CONTA"
 msg -bar
-echo -e "Esta Opcion Limita las Conexiones de SSH/SSL/DROPBEAR"
+echo -e "Esta opção limita as conexões de SSH/SSL/DROPBEAR"
 PIDVRF="$(ps aux|grep "${SCPusr}/usercodes verificar"|grep -v grep|awk '{print $2}')"
 if [[ -z $PIDVRF ]]; then
 msg -bar
-echo -ne "\033[1;96m   ¿Cada cuantos segundos ejecutar el limitador?\n\033[1;97m  +Segundos = -Uso de CPU | -Segundos = +Uso de CPU\033[0;92m \n                Predeterminado:\033[1;37m 120s\n     Cuantos Segundos (Numeros Unicamente): " && read tiemlim   
+echo -ne "\033[1;96m   A cada quantos segundos para executar o limitador?\n\033[1;97m  +Segundos = -Uso de CPU | -Segundos = +Uso de CPU\033[0;92m \n                Predeterminado:\033[1;37m 120s\n     Cuantos Segundos (Numeros Unicamente): " && read tiemlim   
 [[ -z "$tiemlim" ]] && tiemlim="120"
 echo "${tiemlim}" > /etc/newadm/ger-user/tiemlim.log
 cd ${SCPusr}
@@ -953,21 +953,21 @@ done
 [[ -e ${SCPdir}/USRbloqueados ]] && rm ${SCPdir}/USRbloqueados
 fi
 msg -bar
-[[ -z ${VERY} ]] && verificar="\033[1;32m ACTIVADO " || verificar="\033[1;31m DESACTIVADO "
-echo -e "            $verificar  --  CON EXITO"
+[[ -z ${VERY} ]] && verificar="\033[1;32m ATIVADO " || verificar="\033[1;31m DESATIVADO "
+echo -e "            $verificar  --  COM SUCESSO"
 msg -bar
 }
 
 ##DESBLOEUEAR
 
 verif2_funx () {
-echo -e "\033[1;32m      DESBLOQUEO AUT. Y LIMPIADOR DE EXPIARDOS"
+echo -e "\033[1;32m     DESBLOQUEIO AUTOMÁTICO E EXPIARD CLEANER"
 msg -bar
-echo -e "Esta opcion desbloquea cada 60 segundos a usuarios\nbloqueados por el limitador y limpia los usuarios expirados"
+echo -e "Esta opção desbloqueia a cada 60 segundos os usuários\nbloqueados pelo limitador e limpa os usuários expirados"
 PIDVRF2="$(ps aux|grep "${SCPusr}/usercodes desbloqueo"|grep -v grep|awk '{print $2}')"
 if [[ -z $PIDVRF2 ]]; then
 msg -bar
-echo -ne "\033[1;96m   ¿Cada cuantos segundos ejecutar el desbloqueador?\n\033[1;97m  +Segundos = -Uso de CPU | -Segundos = +Uso de CPU\033[0;92m \n                Predeterminado:\033[1;37m 300s\n     Cuantos Segundos (Numeros Unicamente): " && read tiemdes   
+echo -ne "\033[1;96m   A cada quantos segundos execute o desbloqueador?\n\033[1;97m  +Segundos = -Uso de CPU | -Segundos = +Uso de CPU\033[0;92m \n                Predeterminado:\033[1;37m 300s\n     Cuantos Segundos (Numeros Unicamente): " && read tiemdes   
 [[ -z "$tiemdes" ]] && tiemdes="300"
 echo "${tiemdes}" > /etc/newadm/ger-user/tiemdes.log
 cd ${SCPusr}
@@ -979,8 +979,8 @@ done
 
 fi
 msg -bar
-[[ -z ${VERY2} ]] && desbloqueo="\033[1;32m ACTIVADO " || desbloqueo="\033[1;31m DESACTIVADO "
-echo -e "            $desbloqueo  --  CON EXITO"
+[[ -z ${VERY2} ]] && desbloqueo="\033[1;32m ATIVADO " || desbloqueo="\033[1;31m DESATIVADO "
+echo -e "            $desbloqueo  --  COM SUCESSO"
 msg -bar
 }
 
@@ -996,9 +996,9 @@ echo "" >> /etc/ssh/sshd_config
 echo "Banner /etc/bannerssh" >> /etc/ssh/sshd_config
 local="/etc/bannerssh"
 fi
-msg -verd "$(fun_trans  "Bienvenido este es el instalador del BANNER-SSH/DROPBEAR")"
+msg -verd "$(fun_trans  "Bem-vindo este é o instalador BANNER-SSH/DROPBEAR")"
 msg -bar
-msg -ne "$(fun_trans  "Escriba el mensaje principal del BANNER de preferencia en HTML"): \n" && read ban_ner
+msg -ne "$(fun_trans  "Escreva a mensagem principal BANNER de preferencia em HTML"): \n" && read ban_ner
 msg -bar
 credi="$(less /etc/newadm/message.txt)"
 echo "$ban_ner" >> $local
@@ -1007,7 +1007,7 @@ if [[ -e "$local2" ]]; then
 rm $local2  > /dev/null 2>&1
 cp $local $local2 > /dev/null 2>&1
 fi 
-msg -verd "$(fun_trans  "Banner Agregado Con !!EXITO¡¡")" && msg -bar
+msg -verd "$(fun_trans  "Banner Adicionado com !!SUCESSO!")" && msg -bar
 service dropbear stop 2>/dev/null
 service sshd restart 2>/dev/null
 service dropbear restart 2>/dev/null
@@ -1023,7 +1023,7 @@ sleep $tiemdes
 }
 
 rec_total () {
-echo -e "\033[1;32m  REGISTRO TOTAL DE CUENTAS VIEJAS Y NUEVAS"
+echo -e "\033[1;32m  TOTAL DE REGISTRO DE CONTAS ANTIGAS E NOVAS"
 msg -bar
 cat /etc/ADMuser
 msg -bar
@@ -1033,19 +1033,19 @@ if [[ "$1" = "verificar" ]]; then
 verif_fun
 exit
 fi
-[[ -z ${VERY} ]] && verificar="\033[1;31m[DESACTIVADO]" || verificar="\033[1;32m[ACTIVO]"
+[[ -z ${VERY} ]] && verificar="\033[1;31m[DESATIVADO]" || verificar="\033[1;32m[ATIVO]"
 
 # DESBLOQUEO AUTO
 if [[ "$1" = "desbloqueo" ]]; then
 desbloqueo_auto
 exit
 fi
-[[ -z ${VERY2} ]] && desbloqueo="\033[1;31m[DESACTIVADO]" || desbloqueo="\033[1;32m[ACTIVO]"
-echo -e "\033[1;37m       =====>>►► 🐲 PANEL VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+[[ -z ${VERY2} ]] && desbloqueo="\033[1;31m[DESATIVADO]" || desbloqueo="\033[1;32m[ATIVO]"
+echo -e "\033[1;37m       =====>>►► 🐲 PAINEL VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar
-msg -ama "   MENU ADMINISTRACION DE USUARIOS SSL/SSH/DROPBEAR"
+msg -ama "   MENU DE ADMINISTRAÇÃO DO USUÁRIO SSL/SSH/DROPBEAR"
 msg -bar
-menu_func "CREAR NUEVO USUARIO" "\033[1;35mCREAR USUARIO TEMPORAL" "\033[1;91mREMOVER USUARIO" "BLOQUEAR O DESBLOQUEAR USUARIO" "\033[1;93mREINICIAR CONTADOR DE BLOQUEADOS y EXPIRADOS" "EDITAR USUARIO" "\033[1;92mRENOVAR USUARIO" "DETALLES DE TODOS USUARIOS" "MONITOR DE USUARIOS CONECTADOS" "ELIMINAR USUARIOS VENCIDOS" "BACKUP USUARIOS" "BANNER SSH" "\033[1;31m⚠️ELIMINAR TODOS LOS USUARIOS⚠️ \n" " -fi ${verificar} \033[1;97m🔒 LIMITADOR-DE-CUENTAS 🔒 -" " -fi ${desbloqueo} \033[1;97m🔓 DESBLOQUEO-AUTOMATICO 🔓 -" "\033[1;92mLOG DE CUENTAS REGISTRADAS" "LIMPIAR LOG DE LIMITADOR"
+menu_func "CREAR NUEVO USUARIO" "\033[1;35mCRIAR USUÁRIO TEMPORÁRIO" "\033[1;91mREMOVER USUARIO" "BLOQUEAR O DESBLOQUEAR USUARIO" "\033[1;93mREINICIAR CONTADOR BLOQUEADO E EXPIRADO" "EDITAR USUARIO" "\033[1;92mRENOVAR USUARIO" "DETALHES DE TODOS OS USUÁRIOS" "MONITOR DE USUÁRIOS CONECTADOS" "ELIMINAR USUARIOS VENCIDOS" "BACKUP USUARIOS" "BANNER SSH" "\033[1;31m⚠️ELIMINAR TODOS OS USUARIOS⚠️ \n" " -fi ${verificar} \033[1;97m🔒 LIMITADOR-DE-CONTAS 🔒 -" " -fi ${desbloqueo} \033[1;97m🔓 DESBLOQUEO-AUTOMATICO 🔓 -" "\033[1;92mLOG DE CONTAS REGISTRADAS" "LIMPA LOG DE LIMITADOR"
 [[ -e "${SCPusr}/Limiter2.log" ]] && echo -ne "$(msg -verd "[18]") $(msg -verm2 ">") " && msg -azu "$(fun_trans "\033[1;93mVER LOG DE LIMITADOR")"
 echo -ne "$(msg -verd "[0]") $(msg -verm2 ">")" && msg -bra "$(fun_trans "VOLVER")"
 msg -bar
@@ -1069,7 +1069,7 @@ case ${selection} in
 16)rec_total;;
 17)
 rm -rf ${SCPusr}/Limiter2.log
-echo -e "\033[1;32m  LOG ELIMINADO CON EXITO"
+echo -e "\033[1;32m  LOG REMOVIDO COM SUCESSO"
 msg -bar
 ;;
 18)
