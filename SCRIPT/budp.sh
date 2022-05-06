@@ -6,21 +6,21 @@ SCPinst="/etc/ger-inst" && [[ ! -d ${SCPinst} ]] && exit
 BadVPN () {
 pid_badvpn=$(ps x | grep badvpn | grep -v grep | awk '{print $1}')
 if [ "$pid_badvpn" = "" ]; then
-    msg -ama "                   ACTIVANDO BADVPN"
+    msg -ama "                   ATIVANDO BADVPN"
     msg -bar 
     if [[ ! -e /bin/badvpn-udpgw ]]; then
     wget -O /bin/badvpn-udpgw https://raw.githubusercontent.com/sycNET/VPS-MX-8.0/main/ArchivosUtilitarios/badvpn-udpgw &>/dev/null
     chmod 777 /bin/badvpn-udpgw
     fi
     screen -dmS badvpn2 /bin/badvpn-udpgw --listen-addr 127.0.0.1:7300 --max-clients 1000 --max-connections-for-client 10 
-    [[ "$(ps x | grep badvpn | grep -v grep | awk '{print $1}')" ]] && msg -verd "                  ATIVADO COM EXITO" || msg -ama "                 Fallo"
+    [[ "$(ps x | grep badvpn | grep -v grep | awk '{print $1}')" ]] && msg -verd "                  ATIVADO COM SUCESSO" || msg -ama "                 Fallo"
 	msg -bar
 else
     msg -ama "               DESATIVANDO BADVPN"
     msg -bar
     kill -9 $(ps x | grep badvpn | grep -v grep | awk '{print $1'}) > /dev/null 2>&1
     killall badvpn-udpgw > /dev/null 2>&1
-    [[ ! "$(ps x | grep badvpn | grep -v grep | awk '{print $1}')" ]] && msg -ne "                DESATIVADO COM EXITO \n"
+    [[ ! "$(ps x | grep badvpn | grep -v grep | awk '{print $1}')" ]] && msg -ne "                DESATIVADO COM SUCESSO \n"
     unset pid_badvpn
 	msg -bar
     fi

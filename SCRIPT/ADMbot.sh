@@ -251,7 +251,7 @@ local bot_retorno="$LINE\n"
 ajuda_fun () {
 local bot_retorno="$LINE\n"
          bot_retorno+="$(fun_trans "Olá Amigo")\n"
-         bot_retorno+="$(fun_trans "Bem-vindo ao bot") Mod By @Kalix1\n"
+         bot_retorno+="$(fun_trans "Bem-vindo ao bot") Mod By @SyS-ON\n"
          bot_retorno+="$LINE\n"
          bot_retorno+="$(fun_trans "Lista de Comandos Disponíveis")\n"
          bot_retorno+="$LINE\n"

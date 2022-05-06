@@ -52,7 +52,7 @@ i=1
     arquivo_move="${select_arc[$slct]}"
     [[ -d /var/www/html ]] && [[ -e /var/www/html/$arquivo_move ]] && rm -rf /var/www/html/$arquivo_move > /dev/null 2>&1
     [[ -e /var/www/$arquivo_move ]] && rm -rf /var/www/$arquivo_move > /dev/null 2>&1
-    echo -e "${cor[5]}$(fun_trans "Exito!")"
+    echo -e "${cor[5]}$(fun_trans "Sucesso!")"
     msg -bar
     }
 ;;    
@@ -84,7 +84,7 @@ i="1"
     cp $HOME/$arquivo_move /var/www/html/$arquivo_move
     echo -e "\033[1;36m http://$IP:81/$arquivo_move\033[0m"
     msg -bar
-    echo -e "${cor[5]}$(fun_trans "Exito!")"
+    echo -e "${cor[5]}$(fun_trans "Sucesso!")"
      msg -bar
     }
 ;;
