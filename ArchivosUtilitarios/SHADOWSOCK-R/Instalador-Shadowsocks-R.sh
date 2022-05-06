@@ -799,15 +799,15 @@ install_prepare_libev_obfs(){
                 echo -e "${green}${i}${plain}) ${hint}"
             done
 			msg -bar
-            read -p "Qué objs elegirías(Default: ${obfs_libev[0]}):" r_libev_obfs
+            read -p "Quais objs você escolheria (Padrão: ${obfs_libev[0]}):" r_libev_obfs
             [ -z "$r_libev_obfs" ] && r_libev_obfs=1
             expr ${r_libev_obfs} + 1 &>/dev/null
             if [ $? -ne 0 ]; then
-                echo -e "[${red}Error${plain}] Please enter a number"
+                echo -e "[${red}Error${plain}] Por favor, coloque um numero"
                 continue
             fi
             if [[ "$r_libev_obfs" -lt 1 || "$r_libev_obfs" -gt ${#obfs_libev[@]} ]]; then
-                echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#obfs_libev[@]}"
+                echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#obfs_libev[@]}"
                 continue
             fi
             shadowsocklibev_obfs=${obfs_libev[$r_libev_obfs-1]}
@@ -818,7 +818,7 @@ install_prepare_libev_obfs(){
             done
         fi
     else
-        echo -e "[${green}Info${plain}] autoconf version is less than 2.67, simple-obfs for ${software[${selected}-1]} installation has been skipped"
+        echo -e "[${green}Aviso${plain}] versão do autoconf é menor que 2.67, simple-obfs para ${software[${selected}-1]} a instalação foi ignorada"
     fi
 }
 
@@ -839,7 +839,7 @@ install_prepare(){
         install_prepare_obfs
     fi
 
-    echo "Presiona cualquier tecla para comenzar...o Presione Ctrl+C para cancelar"
+    echo "Pressione qualquer tecla para iniciar... ou pressione Ctrl+C para cancelar"
     char=`get_char`
 
 }
@@ -852,12 +852,12 @@ install_libsodium(){
         cd ${libsodium_file}
         ./configure --prefix=/usr && make && make install
         if [ $? -ne 0 ]; then
-            echo -e "[${red}Error${plain}] ${libsodium_file} install failed."
+            echo -e "[${red}Error${plain}] ${libsodium_file} instalação falhou."
             install_cleanup
             exit 1
         fi
     else
-        echo -e "[${green}Info${plain}] ${libsodium_file} already installed."
+        echo -e "[${green}Aviso${plain}] ${libsodium_file} já instalado."
     fi
 }
 
@@ -870,12 +870,12 @@ install_mbedtls(){
         make SHARED=1 CFLAGS=-fPIC
         make DESTDIR=/usr install
         if [ $? -ne 0 ]; then
-            echo -e "[${red}Error${plain}] ${mbedtls_file} install failed."
+            echo -e "[${red}Error${plain}] ${mbedtls_file} instalação falhou."
             install_cleanup
             exit 1
         fi
     else
-        echo -e "[${green}Info${plain}] ${mbedtls_file} already installed."
+        echo -e "[${green}Aviso${plain}] ${mbedtls_file} já instalado."
     fi
 }
 
@@ -883,7 +883,7 @@ install_shadowsocks_python(){
     cd ${cur_dir}
     unzip -q ${shadowsocks_python_file}.zip
     if [ $? -ne 0 ];then
-        echo -e "[${red}Error${plain}] unzip ${shadowsocks_python_file}.zip failed, please check unzip command."
+        echo -e "[${red}Error${plain}] unzip ${shadowsocks_python_file}.zip falhou, por favor verifique o comando unzip."
         install_cleanup
         exit 1
     fi
@@ -902,8 +902,8 @@ install_shadowsocks_python(){
         fi
     else
         echo
-        echo -e "[${red}Error${plain}] ${software[0]} install failed."
-        echo "Please visit: https://teddysun.com/486.html and contact."
+        echo -e "[${red}Error${plain}] ${software[0]} instalação falhou."
+        echo "Visite: https://teddysun.com/486.html e entre em contato."
         install_cleanup
         exit 1
     fi
@@ -924,8 +924,8 @@ install_shadowsocks_r(){
         fi
     else
         echo
-        echo -e "[${red}Error${plain}] ${software[1]} install failed."
-        echo "Please visit; https://teddysun.com/486.html and contact."
+        echo -e "[${red}Error${plain}] ${software[1]} instalação falhou."
+        echo "Por favor visite; https://teddysun.com/486.html e entre em contato."
         install_cleanup
         exit 1
     fi
@@ -936,7 +936,7 @@ install_shadowsocks_go(){
     if is_64bit; then
         gzip -d ${shadowsocks_go_file_64}.gz
         if [ $? -ne 0 ];then
-            echo -e "[${red}Error${plain}] Decompress ${shadowsocks_go_file_64}.gz failed."
+            echo -e "[${red}Error${plain}] Descomprimir ${shadowsocks_go_file_64}.gz Falhou."
             install_cleanup
             exit 1
         fi
@@ -944,7 +944,7 @@ install_shadowsocks_go(){
     else
         gzip -d ${shadowsocks_go_file_32}.gz
         if [ $? -ne 0 ];then
-            echo -e "[${red}Error${plain}] Decompress ${shadowsocks_go_file_32}.gz failed."
+            echo -e "[${red}Error${plain}] Descomprimir ${shadowsocks_go_file_32}.gz Falhou."
             install_cleanup
             exit 1
         fi
@@ -964,8 +964,8 @@ install_shadowsocks_go(){
         fi
     else
         echo
-        echo -e "[${red}Error${plain}] ${software[2]} install failed."
-        echo "Please visit: https://teddysun.com/486.html and contact."
+        echo -e "[${red}Error${plain}] ${software[2]} instalação falhou."
+        echo "Visite: https://teddysun.com/486.html e entre em contato."
         install_cleanup
         exit 1
     fi
@@ -987,8 +987,8 @@ install_shadowsocks_libev(){
         fi
     else
         echo
-        echo -e "[${red}Error${plain}] ${software[3]} install failed."
-        echo "Please visit: https://teddysun.com/486.html and contact."
+        echo -e "[${red}Error${plain}] ${software[3]} instalação falhou."
+        echo "Visite: https://teddysun.com/486.html e entre em contato."
         install_cleanup
         exit 1
     fi
@@ -998,12 +998,12 @@ install_shadowsocks_libev_obfs(){
     if [ "${libev_obfs}" == "y" ] || [ "${libev_obfs}" == "Y" ]; then
         cd ${cur_dir}
         git clone https://github.com/shadowsocks/simple-obfs.git
-        [ -d simple-obfs ] && cd simple-obfs || echo -e "[${red}Error:${plain}] Failed to git clone simple-obfs."
+        [ -d simple-obfs ] && cd simple-obfs || echo -e "[${red}Error:${plain}] Falha ao git clone simple-obfs."
         git submodule update --init --recursive
         if centosversion 6; then
             if [ ! "$(command -v autoconf268)" ]; then
-                echo -e "[${green}Info${plain}] Starting install autoconf268..."
-                yum install -y autoconf268 > /dev/null 2>&1 || echo -e "[${red}Error:${plain}] Failed to install autoconf268."
+                echo -e "[${green}Info${plain}] Iniciando a instalação do autoconf268..."
+                yum install -y autoconf268 > /dev/null 2>&1 || echo -e "[${red}Error:${plain}] Falha ao instalar o autoconf268."
             fi
             # replace command autoreconf to autoreconf268
             sed -i 's/autoreconf/autoreconf268/' autogen.sh
@@ -1016,8 +1016,8 @@ install_shadowsocks_libev_obfs(){
         make
         make install
         if [ ! "$(command -v obfs-server)" ]; then
-            echo -e "[${red}Error${plain}] simple-obfs for ${software[${selected}-1]} install failed."
-            echo "Please visit: https://teddysun.com/486.html and contact."
+            echo -e "[${red}Error${plain}] simple-obfs for ${software[${selected}-1]} instalação falhou."
+            echo "Visite: https://teddysun.com/486.html e entre em contato."
             install_cleanup
             exit 1
         fi
@@ -1029,7 +1029,7 @@ install_completed_python(){
     clear
     ${shadowsocks_python_init} start
     msg -bar
-    echo -e "Felicidades, ${green}${software[0]}${plain} instalación del servidor completada!"
+    echo -e "Felicidades, ${green}${software[0]}${plain} instalação do servidor concluída!"
     echo -e "Tu Server IP        : ${red} $(get_ip) ${plain}"
     echo -e "Tu Server Port      : ${red} ${shadowsocksport} ${plain}"
     echo -e "Tu Password         : ${red} ${shadowsockspwd} ${plain}"
@@ -1040,7 +1040,7 @@ install_completed_r(){
     clear
     ${shadowsocks_r_init} start
     msg -bar
-    echo -e "Felicidades, ${green}${software[1]}${plain} instalación del servidor completada!"
+    echo -e "Felicidades, ${green}${software[1]}${plain} instalação do servidor concluída!"
     echo -e "Tu Server IP        : ${red} $(get_ip) ${plain}"
     echo -e "Tu Server Port      : ${red} ${shadowsocksport} ${plain}"
     echo -e "Tu Password         : ${red} ${shadowsockspwd} ${plain}"
@@ -1053,7 +1053,7 @@ install_completed_go(){
     clear
     ${shadowsocks_go_init} start
     msg -bar
-    echo -e "Felicidades, ${green}${software[2]}${plain} instalación del servidor completada!"
+    echo -e "Felicidades, ${green}${software[2]}${plain} instalação do servidor concluída!"
     echo -e "Tu Server IP        : ${red} $(get_ip) ${plain}"
     echo -e "Tu Server Port      : ${red} ${shadowsocksport} ${plain}"
     echo -e "Tu Password         : ${red} ${shadowsockspwd} ${plain}"
@@ -1065,7 +1065,7 @@ install_completed_libev(){
     ldconfig
     ${shadowsocks_libev_init} start
     msg -bar
-    echo -e "Felicidades, ${green}${software[3]}${plain} instalación del servidor completada!"
+    echo -e "Felicidades, ${green}${software[3]}${plain} instalação do servidor concluída!"
     echo -e "Tu Server IP        : ${red} $(get_ip) ${plain}"
     echo -e "Tu Server Port      : ${red} ${shadowsocksport} ${plain}"
     echo -e "Tu Password         : ${red} ${shadowsockspwd} ${plain}"
@@ -1080,10 +1080,10 @@ qr_generate_python(){
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
         echo
-        echo "Tu QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
+        echo "Seu QR Code: (Para clientes Shadowsocks Windows, OSX, Android e iOS)"
         echo -e "${green} ${qr_code} ${plain}"
         echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_python_qr.png
-        echo "Tu QR Code has been saved as a PNG file path:"
+        echo "Seu QR Code foi salvo como um caminho de arquivo PNG:"
         echo -e "${green} ${cur_dir}/shadowsocks_python_qr.png ${plain}"
     fi
 }
@@ -1094,10 +1094,10 @@ qr_generate_r(){
         local tmp2=$(echo -n "$(get_ip):${shadowsocksport}:${shadowsockprotocol}:${shadowsockscipher}:${shadowsockobfs}:${tmp1}/?obfsparam=" | base64 -w0)
         local qr_code="ssr://${tmp2}"
         echo
-        echo "Tu QR Code: (For ShadowsocksR Windows, Android clients only)"
+        echo "Seu QR Code: (Somente para ShadowsocksR Windows, clientes Android)"
         echo -e "${green} ${qr_code} ${plain}"
         echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_r_qr.png
-        echo "Tu QR Code has been saved as a PNG file path:"
+        echo "Seu QR Code foi salvo como um caminho de arquivo PNG:"
         echo -e "${green} ${cur_dir}/shadowsocks_r_qr.png ${plain}"
     fi
 }
@@ -1107,10 +1107,10 @@ qr_generate_go(){
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
         echo
-        echo "Tu QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
+        echo "Seu QR Code: (Para clientes Shadowsocks Windows, OSX, Android e iOS)"
         echo -e "${green} ${qr_code} ${plain}"
         echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_go_qr.png
-        echo "Tu QR Code has been saved as a PNG file path:"
+        echo "Seu QR Code foi salvo como um caminho de arquivo PNG:"
         echo -e "${green} ${cur_dir}/shadowsocks_go_qr.png ${plain}"
     fi
 }
@@ -1120,10 +1120,10 @@ qr_generate_libev(){
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
         echo
-        echo "Tu QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
+        echo "Seu QR Code: (Para clientes Shadowsocks Windows, OSX, Android e iOS)"
         echo -e "${green} ${qr_code} ${plain}"
         echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_libev_qr.png
-        echo "Tu QR Code has been saved as a PNG file path:"
+        echo "Seu QR Code foi salvo como um caminho de arquivo PNG:"
         echo -e "${green} ${cur_dir}/shadowsocks_libev_qr.png ${plain}"
     fi
 }
@@ -1186,8 +1186,8 @@ install_shadowsocks(){
 }
 
 uninstall_shadowsocks_python(){
-    printf "Estás seguro de desinstalar ${red}${software[0]}${plain}? [y/n]\n"
-    read -p "(default: n):" answer
+    printf "Tem certeza de desinstalar ${red}${software[0]}${plain}? [y/n]\n"
+    read -p "(Padrão: n):" answer
     [ -z ${answer} ] && answer="n"
     if [ "${answer}" == "y" ] || [ "${answer}" == "Y" ]; then
         ${shadowsocks_python_init} status > /dev/null 2>&1
@@ -1208,7 +1208,7 @@ uninstall_shadowsocks_python(){
             cat /usr/local/shadowsocks_python.log | xargs rm -rf
             rm -f /usr/local/shadowsocks_python.log
         fi
-        echo -e "[${green}Info${plain}] ${software[0]} uninstall success"
+        echo -e "[${green}Info${plain}] ${software[0]} sucesso de desinstalação"
     else
         echo
         echo -e "[${green}Info${plain}] ${software[0]} uninstall cancelled, nothing to do..."
@@ -1217,8 +1217,8 @@ uninstall_shadowsocks_python(){
 }
 
 uninstall_shadowsocks_r(){
-    printf "Estás seguro de desinstalar ${red}${software[1]}${plain}? [y/n]\n"
-    read -p "(default: n):" answer
+    printf "Tem certeza de desinstalar ${red}${software[1]}${plain}? [y/n]\n"
+    read -p "(Padrão: n):" answer
     [ -z ${answer} ] && answer="n"
     if [ "${answer}" == "y" ] || [ "${answer}" == "Y" ]; then
         ${shadowsocks_r_init} status > /dev/null 2>&1
@@ -1235,16 +1235,16 @@ uninstall_shadowsocks_r(){
         rm -f ${shadowsocks_r_init}
         rm -f /var/log/shadowsocks.log
         rm -fr /usr/local/shadowsocks
-        echo -e "[${green}Info${plain}] ${software[1]} uninstall success"
+        echo -e "[${green}Info${plain}] ${software[1]} sucesso de desinstalação"
     else
         echo
-        echo -e "[${green}Info${plain}] ${software[1]} uninstall cancelled, nothing to do..."
+        echo -e "[${green}Info${plain}] ${software[1]} desinstalação cancelada, nada a fazer..."
         echo
     fi
 }
 
 uninstall_shadowsocks_go(){
-    printf "Estás seguro de desinstalar ${red}${software[2]}${plain}? [y/n]\n"
+    printf "Tem certeza de desinstalar ${red}${software[2]}${plain}? [y/n]\n"
     read -p "(default: n):" answer
     [ -z ${answer} ] && answer="n"
     if [ "${answer}" == "y" ] || [ "${answer}" == "Y" ]; then
@@ -1261,17 +1261,17 @@ uninstall_shadowsocks_go(){
         rm -fr $(dirname ${shadowsocks_go_config})
         rm -f ${shadowsocks_go_init}
         rm -f /usr/bin/shadowsocks-server
-        echo -e "[${green}Info${plain}] ${software[2]} uninstall success"
+        echo -e "[${green}Info${plain}] ${software[2]} sucesso de desinstalação"
     else
         echo
-        echo -e "[${green}Info${plain}] ${software[2]} uninstall cancelled, nothing to do..."
+        echo -e "[${green}Info${plain}] ${software[2]} desinstalação cancelada, nada a fazer..."
         echo
     fi
 }
 
 uninstall_shadowsocks_libev(){
-    printf "Estás seguro de desinstalar ${red}${software[3]}${plain}? [y/n]\n"
-    read -p "(default: n):" answer
+    printf "Tem certeza de desinstalar ${red}${software[3]}${plain}? [y/n]\n"
+    read -p "(Padrão: n):" answer
     [ -z ${answer} ] && answer="n"
     if [ "${answer}" == "y" ] || [ "${answer}" == "Y" ]; then
         ${shadowsocks_libev_init} status > /dev/null 2>&1
@@ -1306,10 +1306,10 @@ uninstall_shadowsocks_libev(){
         rm -f /usr/local/share/man/man8/shadowsocks-libev.8
         rm -fr /usr/local/share/doc/shadowsocks-libev
         rm -f ${shadowsocks_libev_init}
-        echo -e "[${green}Info${plain}] ${software[3]} uninstall success"
+        echo -e "[${green}Info${plain}] ${software[3]} sucesso de desinstalação"
     else
         echo
-        echo -e "[${green}Info${plain}] ${software[3]} uninstall cancelled, nothing to do..."
+        echo -e "[${green}Info${plain}] ${software[3]} desinstalação cancelada, nada a fazer..."
         echo
     fi
 }
@@ -1317,23 +1317,23 @@ uninstall_shadowsocks_libev(){
 uninstall_shadowsocks(){
     while true
     do
-    echo  "¿Qué servidor de Shadowsocks quieres desinstalar?"
+    echo  "Qual servidor Shadowsocks você deseja desinstalar?"
 	msg -bar
     for ((i=1;i<=${#software[@]};i++ )); do
         hint="${software[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
 	msg -bar
-    read -p "Por favor, introduzca un número[1-4]:" un_select
+    read -p "Por favor, coloque um numero[1-4]:" un_select
     case "${un_select}" in
         1|2|3|4)
         msg -bar
-        echo "Tu eliges = ${software[${un_select}-1]}"
+        echo "Você escolhe = ${software[${un_select}-1]}"
         msg -bar
         break
         ;;
         *)
-        echo -e "[${red}Error${plain}] Please only enter a number [1-4]"
+        echo -e "[${red}Error${plain}] Insira apenas um número [1-4]"
         ;;
     esac
     done
@@ -1342,7 +1342,7 @@ uninstall_shadowsocks(){
         if [ -f ${shadowsocks_python_init} ]; then
             uninstall_shadowsocks_python
         else
-            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} not installed, please check it and try again."
+            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} não instalado, verifique-o e tente novamente."
             echo
             exit 1
         fi
@@ -1350,7 +1350,7 @@ uninstall_shadowsocks(){
         if [ -f ${shadowsocks_r_init} ]; then
             uninstall_shadowsocks_r
         else
-            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} not installed, please check it and try again."
+            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} não instalado, verifique-o e tente novamente."
             echo
             exit 1
         fi
@@ -1358,7 +1358,7 @@ uninstall_shadowsocks(){
         if [ -f ${shadowsocks_go_init} ]; then
             uninstall_shadowsocks_go
         else
-            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} not installed, please check it and try again."
+            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} não instalado, verifique-o e tente novamente."
             echo
             exit 1
         fi
@@ -1366,7 +1366,7 @@ uninstall_shadowsocks(){
         if [ -f ${shadowsocks_libev_init} ]; then
             uninstall_shadowsocks_libev
         else
-            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} not installed, please check it and try again."
+            echo -e "[${red}Error${plain}] ${software[${un_select}-1]} não instalado, verifique-o e tente novamente."
             echo
             exit 1
         fi
@@ -1381,7 +1381,7 @@ case "${action}" in
         ${action}_shadowsocks
         ;;
     *)
-        echo "Arguments error! [${action}]"
-        echo "Usage: $(basename $0) [install|uninstall]"
+        echo "Argumentos error! [${action}]"
+        echo "Uso: $(basename $0) [install|uninstall]"
         ;;
 esac
