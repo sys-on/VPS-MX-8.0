@@ -606,7 +606,7 @@ install_select(){
         echo -e "${green}${i}${plain}) ${hint}"
     done
 	msg -bar
-    read -p "Por favor, coloque um numero (padrão ${software[0]}):" selected
+    read -p "Por favor, coloque um numero (Padrão ${software[0]}):" selected
     [ -z "${selected}" ] && selected="4"
     case "${selected}" in
         1|2|4)
@@ -624,7 +624,7 @@ install_select(){
 
 install_prepare_password(){
     echo "Por favor, digite a senha para ${software[${selected}-1]}"
-    read -p "(Senha padrão: teddysun.com):" shadowsockspwd
+    read -p "(Senha Padrão: teddysun.com):" shadowsockspwd
     [ -z "${shadowsockspwd}" ] && shadowsockspwd="teddysun.com"
     msg -bar
     echo "Senha = ${shadowsockspwd}"
@@ -636,7 +636,7 @@ install_prepare_port() {
     do
     dport=$(shuf -i 9000-19999 -n 1)
     echo -e "Insira uma porta para ${software[${selected}-1]} [1-65535]"
-    read -p "(Porta padão: ${dport}):" shadowsocksport
+    read -p "(Porta Padrão: ${dport}):" shadowsocksport
     [ -z "${shadowsocksport}" ] && shadowsocksport=${dport}
     expr ${shadowsocksport} + 1 &>/dev/null
     if [ $? -eq 0 ]; then
@@ -749,20 +749,20 @@ install_prepare_protocol(){
 install_prepare_obfs(){
     while true
     do
-    echo -e "Please select obfs for ${software[${selected}-1]}:"
+    echo -e "Por favor, selecione obfs para ${software[${selected}-1]}:"
     for ((i=1;i<=${#obfs[@]};i++ )); do
         hint="${obfs[$i-1]}"
         echo -e "${green}${i}${plain}) ${hint}"
     done
-    read -p "Which obfs you'd select(Default: ${obfs[0]}):" r_obfs
+    read -p "Quais obfs você selecionaria (Padrão: ${obfs[0]}):" r_obfs
     [ -z "$r_obfs" ] && r_obfs=1
     expr ${r_obfs} + 1 &>/dev/null
     if [ $? -ne 0 ]; then
-        echo -e "[${red}Error${plain}] Please enter a number"
+        echo -e "[${red}Error${plain}] Por favor, coloque um numero"
         continue
     fi
     if [[ "$r_obfs" -lt 1 || "$r_obfs" -gt ${#obfs[@]} ]]; then
-        echo -e "[${red}Error${plain}] Please enter a number between 1 and ${#obfs[@]}"
+        echo -e "[${red}Error${plain}] Insira um número entre 1 e ${#obfs[@]}"
         continue
     fi
     shadowsockobfs=${obfs[$r_obfs-1]}
@@ -777,18 +777,18 @@ install_prepare_libev_obfs(){
     if autoconf_version || centosversion 6; then
         while true
         do
-        echo -e "Do you want install simple-obfs for ${software[${selected}-1]}? [y/n]"
-        read -p "(default: n):" libev_obfs
+        echo -e "Você quer instalar simple-obfs para ${software[${selected}-1]}? [y/n]"
+        read -p "(Padrão: n):" libev_obfs
         [ -z "$libev_obfs" ] && libev_obfs=n
         case "${libev_obfs}" in
             y|Y|n|N)
             msg -bar
-            echo "Tu eliges = ${libev_obfs}"
+            echo "Você escolhe = ${libev_obfs}"
             msg -bar
             break
             ;;
             *)
-            echo -e "[${red}Error${plain}] Please only enter [y/n]"
+            echo -e "[${red}Error${plain}] Por favor, entre apenas [y/n]"
             ;;
         esac
         done
@@ -796,12 +796,12 @@ install_prepare_libev_obfs(){
         if [ "${libev_obfs}" == "y" ] || [ "${libev_obfs}" == "Y" ]; then
             while true
             do
-            echo -e "Please select obfs for simple-obfs:"
+            echo -e "Por favor selecione obfs para obfs simples:"
             for ((i=1;i<=${#obfs_libev[@]};i++ )); do
                 hint="${obfs_libev[$i-1]}"
                 echo -e "${green}${i}${plain}) ${hint}"
             done
-            read -p "Which obfs you'd select(Default: ${obfs_libev[0]}):" r_libev_obfs
+            read -p "Quais obfs você selecionaria (Padrão: ${obfs_libev[0]}):" r_libev_obfs
             [ -z "$r_libev_obfs" ] && r_libev_obfs=1
             expr ${r_libev_obfs} + 1 &>/dev/null
             if [ $? -ne 0 ]; then
