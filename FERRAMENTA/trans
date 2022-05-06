@@ -5,7 +5,7 @@ if [[ ! $LANG =~ (UTF|utf)-?8$ ]]; then export LANG=en_US.UTF-8; fi
 read -r -d '' TRANS_PROGRAM << 'EOF'
 BEGIN {
 Name        = "Translate Shell"
-Description = "Command-line translator using Google Translate, Bing Translator, Yandex.Translate, etc."
+Description = "Tradutor de linha de comando usando o Google Translate, Bing Translator, Yandex.Translate, etc.."
 Version     = "0.9.6.7"
 ReleaseDate = "2018-03-17"
 Command     = "trans"
@@ -2215,7 +2215,7 @@ UserLocale = "en_US.UTF-8"
 utf = 1
 }
 if (!utf)
-w("[WARNING] Your locale codeset (" UserLocale ") is not UTF-8.")
+w("[AVISO] Seu conjunto de códigos de localidade (" UserLocale ") is not UTF-8.")
 UserLang = parseLang(UserLocale)
 }
 function getVersion(    build, gitHead, platform) {
