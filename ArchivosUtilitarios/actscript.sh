@@ -88,7 +88,7 @@ pv="$(echo ${idioma[$selection]}|cut -d' ' -f1)"
 byinst="true"
 }
 install_fim () {
-msg -ama "$(source trans -b es:${id} "Instalacion Completa, Utilize los Comandos"|sed -e 's/[^a-z -]//ig')" && msg bar2
+msg -ama "$(source trans -b es:${id} "Instalação completa, use os comandos"|sed -e 's/[^a-z -]//ig')" && msg bar2
 
 msg -bar2
 }
@@ -149,26 +149,26 @@ chmod +x /bin/monitor.sh
 wget -O /var/www/html/estilos.css https://www.dropbox.com/s/vzx4rfxqds1btt4/estilos.css &> /dev/null
 clear
 msg -bar2
-echo -e "\e[97m\033[1;41m       =====>>►► 🐲 PANEL VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
+echo -e "\e[97m\033[1;41m       =====>>►► 🐲 PAINEL VPS•MX 🐲 ◄◄<<=====       \033[1;37m"
 msg -bar2
 [[ $1 = "" ]] && funcao_idioma || {
 [[ ${#1} -gt 2 ]] && funcao_idioma || id="$1"
  }
 error_fun () {
-msg -bar2 && msg -verm "$(source trans -b es:${id} "Esta Key Es de Otro Servidor Por Lo Tanto Fue Excluida"|sed -e 's/[^a-z -]//ig') " && msg -bar2
+msg -bar2 && msg -verm "$(source trans -b es:${id} "Esta chave é de outro servidor, portanto, foi excluída"|sed -e 's/[^a-z -]//ig') " && msg -bar2
 [[ -d ${SCPinstal} ]] && rm -rf ${SCPinstal}
 exit 1
 }
 invalid_key () {
-msg -bar2 && msg -verm "#¡Key Invalida#! " && msg -bar2
+msg -bar2 && msg -verm "#¡Chave inválida#! " && msg -bar2
 [[ -e $HOME/lista-arq ]] && rm $HOME/lista-arq
 exit 1
 }
 while [[ ! $Key ]]; do
-msg -ne "##Digite  Key##: " && read Key
+msg -ne "##Digite  Chave##: " && read Key
 tput cuu1 && tput dl1
 done
-msg -ne "# Verificando Key # : "
+msg -ne "# Verificando a Chave # : "
 cd $HOME
 wget -O $HOME/lista-arq $(ofus "$Key")/$IP > /dev/null 2>&1 && echo -e "\033[1;32m Verificado" || {
    echo -e "\033[1;32m Verificada"
@@ -181,11 +181,11 @@ function_verify
 updatedb
 if [[ -e $HOME/lista-arq ]] && [[ ! $(cat $HOME/lista-arq|grep "KEY INVALIDA!") ]]; then
    msg -bar2
-   msg -verd "$(source trans -b es:${id} " INSTALANDO"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX #MOD by @Kalix1]"
+   msg -verd "$(source trans -b es:${id} " INSTALANDO"|sed -e 's/[^a-z -]//ig'): \033[1;31m[VPS-MX #MOD by @SyS-ON]"
    REQUEST=$(ofus "$Key"|cut -d'/' -f2)
    [[ ! -d ${SCPinstal} ]] && mkdir ${SCPinstal}
    pontos="."
-   stopping="$(source trans -b es:${id} "Verificando Actualizaciones"|sed -e 's/[^a-z -]//ig')"
+   stopping="$(source trans -b es:${id} "Verificando atualizações"|sed -e 's/[^a-z -]//ig')"
    for arqx in $(cat $HOME/lista-arq); do
    msg -verm "${stopping}${pontos}"
    wget -O ${SCPinstal}/${arqx} ${IP}:81/${REQUEST}/${arqx} > /dev/null 2>&1 && verificar_arq "${arqx}" || error_fun
