@@ -63,7 +63,7 @@ if [[ -d "$DIRETORIOKEY" ]]; then #VERIFICANDO SE A CHAVE EXISTE
  else
    if [[ ${USRIP} = "ERRO" ]]; then #VERIFICA SE FOR INSTALACAO O IP DEVE SER ENVIADO
     FILE="${DIR}/ERROR-KEY"
-    echo "KEY DE INSTALACION!" > ${FILE}
+    echo "KEY DE INSTALAÇÃO!" > ${FILE}
     ENV_ARQ="False"
    fi
  fi
@@ -102,8 +102,8 @@ fi #VERIFICA SE O IP E VARIAVEL
 if [[ $(cat $DIRETORIOKEY/used) != "$USRIP" ]]; then
   #IP INVALIDO BLOQUEIA INSTALACAO
   log="/etc/gerar-sh-log"
-  echo -e "\033[1;94mUSUARIO:\033[1;91m $(cat $DIRETORIOKEY.name)\033[1;94m USADA EN IP:\033[1;91m $USRIP" >> $log
-  echo -e "KEY BLOQUEADA, INTENTO DE MULTI INSTALACION" >> $log
+  echo -e "\033[1;94mUSUARIO:\033[1;91m $(cat $DIRETORIOKEY.name)\033[1;94m USADA EM IP:\033[1;91m $USRIP" >> $log
+  echo -e "KEY BLOQUEADA, TENTATIVA DE INSTALAÇÃO MÚLTIPLA" >> $log
   echo -e "\033[1;97m➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖➖\033[1;37m" >> $log
   rm -rf ${DIRETORIOKEY}*
   exit #KEY INVALIDA, FINALIZA REQUEST
