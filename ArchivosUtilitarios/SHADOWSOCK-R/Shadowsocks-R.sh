@@ -22,16 +22,16 @@ fun_eth () {
 eth=$(ifconfig | grep -v inet6 | grep -v lo | grep -v 127.0.0.1 | grep "encap:Ethernet" | awk '{print $1}')
     [[ $eth != "" ]] && {
     msg -bar
-    echo -e "${cor[3]} $(fun_trans ${id} "Aplicar Sistema Para Mejorar Paquetes SSH?")"
-    echo -e "${cor[3]} $(fun_trans ${id} "Opcion Para Usuarios Avanzados")"
+    echo -e "${cor[3]} $(fun_trans ${id} "Aplicar sistema para atualizar pacotes SSH?")"
+    echo -e "${cor[3]} $(fun_trans ${id} "Opção para usuários avançados")"
     msg -bar
     read -p " [S/N]: " -e -i n sshsn
            [[ "$sshsn" = @(s|S|y|Y) ]] && {
-           echo -e "${cor[1]} $(fun_trans ${id} "Correccion de problemas de paquetes en SSH...")"
-           echo -e " $(fun_trans ${id} "Cual es la Tasa de RX")"
+           echo -e "${cor[1]} $(fun_trans ${id} "Correção de problemas de pacotes em SSH...")"
+           echo -e " $(fun_trans ${id} "Qual é a taxa RX")"
            echo -ne "[ 1 - 999999999 ]: "; read rx
            [[ "$rx" = "" ]] && rx="999999999"
-           echo -e " $(fun_trans ${id} "Cual es la Tasa de  TX")"
+           echo -e " $(fun_trans ${id} "Qual é a taxa  TX")"
            echo -ne "[ 1 - 999999999 ]: "; read tx
            [[ "$tx" = "" ]] && tx="999999999"
            apt-get install ethtool -y > /dev/null 2>&1
@@ -69,14 +69,14 @@ msg -bar
 rm -rf /etc/shadowsocks-r/config.json
 return 0
 }
-echo -e "${cor[3]}  INSTALADOR SHADOWSOCK-R+(obfs) By @Kalix1"
+echo -e "${cor[3]}  SHADOWSOCK-R + INSTALADOR (obfs) Por @Kalix1"
 msg -bar
-echo -e "${cor[1]} Escoja la opcion deseada."
+echo -e "${cor[1]} Escolha a opção desejada."
 msg -bar
 echo "1).- INSTALAR SHADOWSOCK-R"
 echo "2).- DESINSTALAR SHADOWSOCK-R"
 msg -bar
-echo -n "Digite solo el numero segun su respuesta: "
+echo -n "Digite apenas o número de acordo com sua resposta: "
 read opcao
 case $opcao in
 1)
@@ -100,7 +100,7 @@ exit
 ;;
 esac
 value=$(ps ax |grep /etc/shadowsocks-r|grep -v grep)
-[[ $value != "" ]] && value="\033[1;32mINICIADO CON EXITO" || value="\033[1;31mERROR"
+[[ $value != "" ]] && value="\033[1;32mINICIADO COM SUCESSO" || value="\033[1;31mERROR"
 msg -bar
 echo -e "${value}"
 msg -bar
