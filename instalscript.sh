@@ -70,7 +70,7 @@ ubu18_fun () {
 
 Deb_fun () {
     wget -O /etc/apt/sources.list https://github.com/sys-on/VPS-MX-8.0/raw/main/Repositorios/Debin/sources.list &> /dev/null
-	echo -e "\033[1;97m DEB"
+	echo -e "\033[1;97m DEB 8.11"
 }
 
 otro_fun () {
@@ -85,8 +85,8 @@ otro_fun () {
     msg -bar
     echo " 1).- Ubuntu 16.04 "
     echo " 2).- Ubuntu 18.04 "
-    #echo " 3).- Debin "
-    echo " 3).- Outro"
+    echo " 3).- Debin  8.11 "
+    echo " 4).- Outro"
 	msg -bar
 	echo -n "Digite apenas o número de acordo com sua resposta: "
     read opcao
