@@ -4,7 +4,7 @@ SCPfrm="/etc/ger-frm" && [[ ! -d ${SCPfrm} ]] && exit
 SCPinst="/etc/ger-inst" && [[ ! -d ${SCPinst} ]] && exit
 UNLOCK () {
 sudo apt-get install libpam-cracklib -y > /dev/null 2>&1
-wget https://raw.githubusercontent.com/NDsVPN/VPS-MX-8.0/main/ArchivosUtilitarios/common-password -O /etc/pam.d/common-password > /dev/null 2>&1
+wget https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/ArchivosUtilitarios/common-password -O /etc/pam.d/common-password > /dev/null 2>&1
     chmod +x /etc/pam.d/common-password
 msg -bar2
 echo -e "${cor[4]}Senha alfanumérica desativada com SUCESSO"
