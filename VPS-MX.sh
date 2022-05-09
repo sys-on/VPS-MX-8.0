@@ -238,7 +238,7 @@ echo 'echo "" '>> .bashrc
 echo 'echo -e "\033[92m        REVENDEDOR : $mess1 "'>> .bashrc
 echo 'echo "" '>> .bashrc                                               
 echo 'echo -e "\033[97m   PARA MOSTRO PAINEL  DIGITE:  sudo menu "'>> .bashrc
-echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/master/Vercion &>/dev/null'>> .bashrc
+echo 'wget -O /etc/versin_script_new https://raw.githubusercontent.com/sys-on/VPS-MX-8.0/main/Vercion &>/dev/null'>> .bashrc
 echo 'echo ""'>> .bashrc
 echo -e "        COMANDO PRINCIPAL PARA ENTRAR NO PAINEL "
 echo -e "\033[1;41m                     sudo menu                        \033[0;37m" && msg -bar2
